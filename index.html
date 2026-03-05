@@ -3,205 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRYPT3CHO | Cybersecurity Offensive</title>
+    <title>CRYPT3CHO | Offensive Security</title>
     <style>
         :root { 
             --green: #00ff41; 
-            --dark-bg: #0a0a0a; 
-            --card-bg: #121212;
-            --gray: #999; 
-            --white: #e0e0e0;
+            --dark-bg: #050505; 
+            --card-bg: #0d0d0d;
+            --gray: #777; 
+            --white: #f0f0f0;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; outline: none; }
 
         body { 
             background: var(--dark-bg); 
             color: var(--white); 
             font-family: 'Courier New', Courier, monospace; 
             margin: 0; 
-            padding: 20px; 
+            padding: 15px; 
             display: flex; 
-            align-items: center; 
             justify-content: center; 
             min-height: 100vh; 
         }
 
         .container { 
-            max-width: 650px; 
+            max-width: 600px; 
             width: 100%; 
             background: var(--card-bg);
-            border: 1px solid #222; 
-            padding: 40px; 
-            border-radius: 8px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            border: 1px solid #1a1a1a; 
+            padding: 30px 20px; 
+            border-radius: 4px; 
+            box-shadow: 0 0 20px rgba(0,255,65,0.05); 
         }
 
-        .header { 
-            color: var(--green); 
-            margin-bottom: 30px; 
-            font-size: 1.1rem; 
-            line-height: 1.5;
-        }
-
-        h1 { margin: 0; font-size: 1.8rem; color: var(--white); letter-spacing: 2px; }
-
-        .tagline { color: var(--gray); margin-bottom: 30px; font-size: 0.9rem; }
+        .header { border-left: 3px solid var(--green); padding-left: 15px; margin-bottom: 30px; }
+        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 4px; text-transform: uppercase; }
+        .tagline { color: var(--green); font-size: 0.8rem; opacity: 0.8; margin-top: 5px; }
 
         .section-title {
             color: var(--green);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-
-        .services, .certs { margin-bottom: 30px; }
-
-        .service-item, .cert-item { 
-            margin-bottom: 20px; 
-            padding-left: 15px; 
-            transition: 0.3s; 
-        }
-
-        .service-item:hover, .cert-item:hover { 
-            transform: translateX(5px);
-        }
-
-        .service-title, .cert-title { color: var(--green); font-weight: bold; display: block; margin-bottom: 5px; }
-        .service-desc, .cert-info { color: var(--gray); font-size: 0.85rem; line-height: 1.4; }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-
-        .tech-badge {
             font-size: 0.7rem;
-            background: #1a1a1a;
-            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 25px 0 15px 0;
+            background: rgba(0,255,65,0.1);
             padding: 5px 10px;
-            border: 1px solid #333;
-            border-radius: 3px;
+            display: inline-block;
         }
 
-        .contact-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .item { margin-bottom: 12px; padding-left: 10px; border-left: 1px solid #222; }
+        .item-title { color: var(--white); font-weight: bold; font-size: 0.9rem; display: block; }
+        .item-desc { color: var(--gray); font-size: 0.75rem; display: block; margin-top: 2px; }
 
-        .contact-btn { 
-            display: block;
+        /* Estilo de etiquetas para Hardware y Tech */
+        .badge-container { display: flex; flex-wrap: wrap; gap: 6px; }
+        .badge { 
+            font-size: 0.65rem; 
+            border: 1px solid #333; 
+            padding: 3px 8px; 
+            color: var(--gray);
+            border-radius: 2px;
+        }
+        .badge.highlight { border-color: var(--green); color: var(--green); }
+
+        .contact-wrapper { margin-top: 35px; display: flex; flex-direction: column; gap: 10px; }
+        .btn { 
             text-align: center; 
-            background: var(--green); 
-            color: black; 
             text-decoration: none; 
-            padding: 15px; 
+            padding: 14px; 
             font-weight: bold; 
-            border-radius: 4px;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,255,65,0.2);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.2s;
         }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--green);
-            border: 1px solid var(--green);
-            box-shadow: none;
-        }
-
-        .contact-btn:hover { 
-            filter: brightness(1.2);
-            transform: translateY(-2px);
-        }
+        .btn-primary { background: var(--green); color: #000; }
+        .btn-secondary { border: 1px solid var(--green); color: var(--green); }
+        .btn:hover { transform: scale(1.01); filter: brightness(1.1); }
 
         .footer { 
-            margin-top: 50px; 
-            font-size: 0.7rem; 
-            color: #444; 
+            margin-top: 40px; 
+            font-size: 0.6rem; 
+            color: #333; 
             text-align: center; 
-            letter-spacing: 1px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
         }
 
         .cursor { animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-
-        @media (max-width: 480px) {
-            .container { padding: 20px; }
-            h1 { font-size: 1.4rem; }
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            root@crypt3cho:~# ./initialize_profile.sh<br>
             <h1>CRYPT3CHO</h1>
-            <div class="tagline">Seguridad Ofensiva & Auditoría Digital</div>
+            <div class="tagline">OFFENSIVE SYSTEMS & INTEL</div>
         </div>
 
-        <div class="section-title">Servicios</div>
-        <div class="services">
-            <div class="service-item">
-                <span class="service-title">> Pentesting Web & Redes</span>
-                <span class="service-desc">Detección de brechas críticas antes de que un atacante real las explote.</span>
-            </div>
-
-            <div class="service-item">
-                <span class="service-title">> Hardening de Infraestructura</span>
-                <span class="service-desc">Blindaje de servidores Linux/Windows y fortificación de redes.</span>
-            </div>
-
-            <div class="service-item">
-                <span class="service-title">> OSINT & Privacidad</span>
-                <span class="service-desc">Investigación de activos expuestos y protección de huella digital.</span>
-            </div>
+        <div class="section-title">01. SERVICIOS PRINCIPALES</div>
+        <div class="item">
+            <span class="item-title">> PENTESTING & EXPLOITATION</span>
+            <span class="item-desc">Auditoría de activos, detección de vectores de ataque y compromiso controlado.</span>
+        </div>
+        <div class="item">
+            <span class="item-title">> INFRASTRUCTURE HARDENING</span>
+            <span class="item-desc">Fortificación de entornos Linux/Windows y despliegue de túneles seguros.</span>
         </div>
 
-        <div class="section-title">Acreditaciones</div>
-        <div class="certs">
-            <div class="cert-item">
-                <span class="cert-title">[v] Exploitation and Pentesting (Metasploit)</span>
-                <span class="cert-info">IBM // Credential ID: X66M47DUYL8V</span>
-            </div>
-            <div class="cert-item">
-                <span class="cert-title">[v] Ethical Hacking with Kali Linux</span>
-                <span class="cert-info">IBM // Credential ID: K7E3XN8R5JIZ</span>
-            </div>
-            <div class="cert-item">
-                <span class="cert-title">[v] Kali Linux Specialist</span>
-                <span class="cert-info">Board Infinity // Credential ID: 97KUXIQCN3MF</span>
-            </div>
+        <div class="section-title">02. SISTEMA // LOG DE CERTIFICACIONES</div>
+        <div class="item">
+            <span class="item-title">[v] EXPLOITATION & PENTESTING (METASPLOIT)</span>
+            <span class="item-desc">IBM // Credential ID: X66M47DUYL8V</span>
+        </div>
+        <div class="item">
+            <span class="item-title">[v] ETHICAL HACKING WITH KALI LINUX</span>
+            <span class="item-desc">IBM // Credential ID: K7E3XN8R5JIZ</span>
+        </div>
+        <div class="item">
+            <span class="item-title">[v] KALI LINUX SPECIALIST</span>
+            <span class="item-desc">Board Infinity // Credential ID: 97KUXIQCN3MF</span>
         </div>
 
-        <div class="section-title">Herramientas & Lab</div>
-        <div class="tech-stack">
-            <span class="tech-badge">KALI LINUX</span>
-            <span class="tech-badge">METASPLOIT</span>
-            <span class="tech-badge">NMAP</span>
-            <span class="tech-badge">PYTHON</span>
-            <span class="tech-badge">WIRESHARK</span>
+        <div class="section-title">03. HARDWARE HACKING & MOBILE LAB</div>
+        <div class="badge-container">
+            <span class="badge highlight">RASPBERRY PI</span>
+            <span class="badge highlight">ESP32</span>
+            <span class="badge highlight">M5STACK</span>
+            <span class="badge highlight">PINEPHONE</span>
+            <span class="badge">SDR / RF</span>
         </div>
-        
+
+        <div class="section-title">04. TECH STACK & NETWORK TOOLS</div>
+        <div class="badge-container">
+            <span class="badge">KALI LINUX</span>
+            <span class="badge">AIRCRACK-NG</span>
+            <span class="badge">BETTERCAP</span>
+            <span class="badge">WIFITE</span>
+            <span class="badge">NGROK</span>
+            <span class="badge">SSH TUNNELING</span>
+            <span class="badge">VIRTUAL MACHINES</span>
+            <span class="badge">VSCODE</span>
+            <span class="badge">PYTHON</span>
+        </div>
+
         <div class="contact-wrapper">
-            <a href="https://wa.me/528134322647?text=Hola%20Crypt3cho,%20solicito%20una%20auditoría%20de%20seguridad." class="contact-btn" target="_blank">
-                [ CONTACTO WHATSAPP ]
+            <a href="https://wa.me/528134322647?text=Solicito%20auditoría%20de%20seguridad." class="btn btn-primary">
+                [ ESTABLECER CONTACTO WHATSAPP ]
             </a>
-
-            <a href="https://t.me/crypt3cho" class="contact-btn btn-secondary" target="_blank">
-                [ TELEGRAM: @CRYPT3CHO ]
+            <a href="https://t.me/crypt3cho" class="btn btn-secondary">
+                [ CANAL SEGURO TELEGRAM ]
             </a>
         </div>
 
         <div class="footer">
-            CRYPT3CHO.COM // EST. 2026 // STATUS: <span style="color:var(--green)">ONLINE</span><span class="cursor">_</span>
+            CRYPT3CHO OPERATIONAL NODE // EST 2026 // ADDR: ENCRYPTED // <span style="color:var(--green)">ONLINE</span><span class="cursor">_</span>
         </div>
     </div>
 </body>
