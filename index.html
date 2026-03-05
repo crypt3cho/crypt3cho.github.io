@@ -56,22 +56,23 @@
             margin-bottom: 20px;
             border-bottom: 1px solid #222;
             padding-bottom: 5px;
+            margin-top: 30px;
         }
 
-        .services { margin-bottom: 30px; }
+        .services, .certs { margin-bottom: 30px; }
 
-        .service-item { 
+        .service-item, .cert-item { 
             margin-bottom: 20px; 
             padding-left: 15px; 
             transition: 0.3s; 
         }
 
-        .service-item:hover { 
+        .service-item:hover, .cert-item:hover { 
             transform: translateX(5px);
         }
 
-        .service-title { color: var(--green); font-weight: bold; display: block; margin-bottom: 5px; }
-        .service-desc { color: var(--gray); font-size: 0.85rem; line-height: 1.4; }
+        .service-title, .cert-title { color: var(--green); font-weight: bold; display: block; margin-bottom: 5px; }
+        .service-desc, .cert-info { color: var(--gray); font-size: 0.85rem; line-height: 1.4; }
 
         .tech-stack {
             display: flex;
@@ -89,7 +90,6 @@
             border-radius: 3px;
         }
 
-        /* Contenedor de botones mejorado */
         .contact-wrapper {
             display: flex;
             flex-direction: column;
@@ -110,7 +110,6 @@
             font-size: 0.9rem;
         }
 
-        /* Estilo específico para Telegram */
         .btn-secondary {
             background: transparent;
             color: var(--green);
@@ -163,6 +162,22 @@
             <div class="service-item">
                 <span class="service-title">> OSINT & Privacidad</span>
                 <span class="service-desc">Investigación de activos expuestos y protección de huella digital.</span>
+            </div>
+        </div>
+
+        <div class="section-title">Acreditaciones Verificadas</div>
+        <div class="certs">
+            <div class="cert-item">
+                <span class="cert-title">[v] Exploitation and Pentesting (Metasploit)</span>
+                <span class="cert-info">IBM // Credential ID: X66M47DUYL8V</span>
+            </div>
+            <div class="cert-item">
+                <span class="cert-title">[v] Ethical Hacking with Kali Linux</span>
+                <span class="cert-info">IBM // Credential ID: K7E3XN8R5JIZ</span>
+            </div>
+            <div class="cert-item">
+                <span class="cert-title">[v] Kali Linux Specialist</span>
+                <span class="cert-info">Board Infinity // Credential ID: 97KUXIQCN3MF</span>
             </div>
         </div>
 
