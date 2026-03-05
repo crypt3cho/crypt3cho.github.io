@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRYPT3CHO | Cybersecurity</title>
+    <style>
+        :root { --green: #00ff41; --dark: #0d0d0d; --gray: #888; }
+        body { background: var(--dark); color: white; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .container { max-width: 600px; width: 100%; border: 1px solid #333; padding: 30px; border-radius: 5px; box-shadow: 0 0 20px rgba(0,255,65,0.1); }
+        .header { color: var(--green); font-weight: bold; margin-bottom: 20px; font-size: 1.2rem; }
+        .service-item { margin-bottom: 15px; padding-left: 20px; border-left: 2px solid #333; transition: 0.3s; }
+        .service-item:hover { border-left: 2px solid var(--green); background: rgba(0,255,65,0.05); }
+        .service-title { color: var(--green); font-weight: bold; display: block; }
+        .service-desc { color: var(--gray); font-size: 0.9rem; }
+        .contact { margin-top: 30px; text-align: center; }
+        .contact a { color: var(--dark); background: var(--green); text-decoration: none; padding: 10px 20px; font-weight: bold; border-radius: 3px; }
+        .footer { margin-top: 40px; font-size: 0.7rem; color: #444; text-align: center; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .cursor { animation: blink 1s infinite; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            admin@crypt3cho:~$ whoami<br>
+            <span style="color:white">Auditores de Seguridad Ofensiva</span><span class="cursor">_</span>
+        </div>
+        
+        <p>Especialistas en identificar vulnerabilidades antes de que otros lo hagan.</p>
+
+        <div class="service-item">
+            <span class="service-title">01. Pentesting Web</span>
+            <span class="service-desc">Auditorías profundas bajo metodología OWASP.</span>
+        </div>
+
+        <div class="service-item">
+            <span class="service-title">02. Hardening de Sistemas</span>
+            <span class="service-desc">Aseguramiento de servidores y configuraciones críticas.</span>
+        </div>
+
+        <div class="service-item">
+            <span class="service-title">03. OSINT e Investigación</span>
+            <span class="service-desc">Inteligencia de fuentes abiertas para protección de activos.</span>
+        </div>
+
+        <div class="contact">
+            <a href="mailto:tu-email@gmail.com">SOLICITAR AUDITORÍA</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 CRYPT3CHO.COM - SECURED BY CLOUDFLARE
+        </div>
+    </div>
+</body>
+</html>
