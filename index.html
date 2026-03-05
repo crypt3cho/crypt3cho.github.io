@@ -36,6 +36,13 @@
             box-shadow: 0 0 20px rgba(0,255,65,0.05); 
         }
 
+        .terminal-header {
+            font-size: 0.85rem;
+            color: var(--green);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
         .header { border-left: 3px solid var(--green); padding-left: 15px; margin-bottom: 30px; }
         h1 { margin: 0; font-size: 1.8rem; letter-spacing: 4px; text-transform: uppercase; }
         .tagline { color: var(--green); font-size: 0.8rem; opacity: 0.8; margin-top: 5px; }
@@ -55,7 +62,6 @@
         .item-title { color: var(--white); font-weight: bold; font-size: 0.9rem; display: block; }
         .item-desc { color: var(--gray); font-size: 0.75rem; display: block; margin-top: 2px; }
 
-        /* Estilo de etiquetas para Hardware y Tech */
         .badge-container { display: flex; flex-wrap: wrap; gap: 6px; }
         .badge { 
             font-size: 0.65rem; 
@@ -95,6 +101,10 @@
 </head>
 <body>
     <div class="container">
+        <div class="terminal-header">
+            root@crypt3cho:~# ./initialize_node.sh --full-stack
+        </div>
+
         <div class="header">
             <h1>CRYPT3CHO</h1>
             <div class="tagline">OFFENSIVE SYSTEMS & INTEL</div>
