@@ -89,6 +89,13 @@
             border-radius: 3px;
         }
 
+        /* Contenedor de botones mejorado */
+        .contact-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .contact-btn { 
             display: block;
             text-align: center; 
@@ -100,10 +107,19 @@
             border-radius: 4px;
             transition: 0.3s;
             box-shadow: 0 4px 15px rgba(0,255,65,0.2);
+            font-size: 0.9rem;
+        }
+
+        /* Estilo específico para Telegram */
+        .btn-secondary {
+            background: transparent;
+            color: var(--green);
+            border: 1px solid var(--green);
+            box-shadow: none;
         }
 
         .contact-btn:hover { 
-            background: #00cc33; 
+            filter: brightness(1.2);
             transform: translateY(-2px);
         }
 
@@ -160,9 +176,15 @@
             <span class="tech-badge">WIRESHARK</span>
         </div>
         
-        <a href="https://wa.me/528134322647?text=Hola%20Crypt3cho,%20solicito%20una%20auditoría%20de%20seguridad." class="contact-btn" target="_blank">
-            [ SOLICITAR AUDITORÍA ]
-        </a>
+        <div class="contact-wrapper">
+            <a href="https://wa.me/528134322647?text=Hola%20Crypt3cho,%20solicito%20una%20auditoría%20de%20seguridad." class="contact-btn" target="_blank">
+                [ CONTACTO WHATSAPP ]
+            </a>
+
+            <a href="https://t.me/crypt3cho" class="contact-btn btn-secondary" target="_blank">
+                [ TELEGRAM: @CRYPT3CHO ]
+            </a>
+        </div>
 
         <div class="footer">
             CRYPT3CHO.COM // EST. 2026 // STATUS: <span style="color:var(--green)">ONLINE</span><span class="cursor">_</span>
