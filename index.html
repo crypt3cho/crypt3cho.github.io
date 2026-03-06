@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRYPT3CHO | Defensive & Offensive Systems</title>
+    <title>CRYPT3CHO | Operational Security Node</title>
     <style>
         :root { 
             --green: #00ff41; 
             --dark-bg: #050505; 
             --card-bg: #0d0d0d;
-            --gray: #777; 
+            --gray: #666; 
             --white: #f0f0f0;
         }
 
@@ -32,70 +32,70 @@
             background: var(--card-bg);
             border: 1px solid #1a1a1a; 
             padding: 30px 20px; 
-            border-radius: 4px; 
-            box-shadow: 0 0 20px rgba(0,255,65,0.05); 
+            border-radius: 2px; 
+            box-shadow: 0 0 25px rgba(0,255,65,0.03); 
         }
 
         .terminal-header {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--green);
-            margin-bottom: 15px;
-            font-weight: bold;
+            margin-bottom: 20px;
+            opacity: 0.8;
         }
 
-        .header { border-left: 3px solid var(--green); padding-left: 15px; margin-bottom: 30px; }
-        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 4px; text-transform: uppercase; }
-        .tagline { color: var(--green); font-size: 0.8rem; opacity: 0.8; margin-top: 5px; }
+        .header { border-left: 3px solid var(--green); padding-left: 15px; margin-bottom: 35px; }
+        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 900; }
+        .tagline { color: var(--gray); font-size: 0.75rem; letter-spacing: 1px; margin-top: 5px; }
 
         .section-title {
             color: var(--green);
             font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 25px 0 15px 0;
-            background: rgba(0,255,65,0.1);
-            padding: 5px 10px;
-            display: inline-block;
+            letter-spacing: 3px;
+            margin: 30px 0 15px 0;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 5px;
+            display: block;
         }
 
-        .item { margin-bottom: 15px; padding-left: 10px; border-left: 1px solid #222; }
-        .item-title { color: var(--white); font-weight: bold; font-size: 0.9rem; display: block; }
-        .item-desc { color: var(--gray); font-size: 0.75rem; display: block; margin-top: 2px; line-height: 1.4; }
+        .item { margin-bottom: 20px; padding-left: 10px; }
+        .item-title { color: var(--white); font-weight: bold; font-size: 0.85rem; display: block; letter-spacing: 1px; }
+        .item-desc { color: var(--gray); font-size: 0.75rem; display: block; margin-top: 4px; line-height: 1.5; }
 
-        .badge-container { display: flex; flex-wrap: wrap; gap: 6px; }
+        .badge-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
         .badge { 
-            font-size: 0.65rem; 
-            border: 1px solid #333; 
-            padding: 3px 8px; 
-            color: var(--gray);
-            border-radius: 2px;
+            font-size: 0.6rem; 
+            border: 1px solid #222; 
+            padding: 4px 10px; 
+            color: var(--green);
+            background: rgba(0,255,65,0.02);
+            text-transform: uppercase;
         }
-        .badge.highlight { border-color: var(--green); color: var(--green); }
 
-        .contact-wrapper { margin-top: 35px; display: flex; flex-direction: column; gap: 10px; }
+        .contact-wrapper { margin-top: 40px; display: flex; flex-direction: column; gap: 12px; }
         .btn { 
             text-align: center; 
             text-decoration: none; 
-            padding: 14px; 
+            padding: 15px; 
             font-weight: bold; 
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            transition: 0.2s;
-            border-radius: 2px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
-        .btn-primary { background: var(--green); color: #000; }
-        .btn-secondary { border: 1px solid var(--green); color: var(--green); background: transparent; }
-        .btn-outline { border: 1px solid #333; color: var(--white); background: transparent; }
+        .btn-primary { background: var(--green); color: #000; border: 1px solid var(--green); }
+        .btn-secondary { border: 1px solid #333; color: var(--white); }
+        .btn-outline { border: 1px solid #222; color: var(--gray); font-size: 0.7rem; }
         
-        .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .btn:hover { background: #00cc33; color: #000; border-color: #00cc33; }
+        .btn-outline:hover { border-color: var(--green); color: var(--green); }
 
         .footer { 
-            margin-top: 40px; 
+            margin-top: 50px; 
             font-size: 0.6rem; 
-            color: #333; 
+            color: #222; 
             text-align: center; 
-            border-top: 1px solid #1a1a1a;
-            padding-top: 20px;
+            letter-spacing: 2px;
         }
 
         .cursor { animation: blink 1s infinite; }
@@ -105,66 +105,65 @@
 <body>
     <div class="container">
         <div class="terminal-header">
-            root@crypt3cho:~# ./initialize_node.sh --full-stack
+            [SYS_READY] :: SESSION_ID: CRYPT3CHO_NODE_2026
         </div>
 
         <div class="header">
             <h1>CRYPT3CHO</h1>
-            <div class="tagline">ENGINEERING & OFFENSIVE SOLUTIONS</div>
+            <div class="tagline">ARCHITECTING OFFENSIVE SOLUTIONS</div>
         </div>
 
-        <div class="section-title">01. OPERACIONES TÁCTICAS (ON-DEMAND)</div>
+        <div class="section-title">01. OPERACIONES TÁCTICAS</div>
         <div class="item">
-            <span class="item-title">> LIMPIEZA DE PERÍMETRO WIFI / RED</span>
-            <span class="item-desc">Detección y eliminación de intrusos, análisis de interferencias y optimización de señal mediante hardware especializado.</span>
+            <span class="item-title">> AUDITORÍA PERIMETRAL Y RF</span>
+            <span class="item-desc">Detección de intrusiones inalámbricas, análisis de espectro y mitigación de vectores de ataque en infraestructuras locales.</span>
         </div>
         <div class="item">
-            <span class="item-title">> AUDITORÍA DE INTRUSIÓN RÁPIDA</span>
-            <span class="item-desc">Evaluación inmediata de vulnerabilidades críticas en entornos domésticos y empresariales.</span>
-        </div>
-
-        <div class="section-title">02. SOLUCIONES ESTRATÉGICAS (MENSUALIDAD)</div>
-        <div class="item">
-            <span class="item-title">> BLINDAJE DIGITAL PARA SEGURIDAD FÍSICA</span>
-            <span class="item-desc">Fortalecimiento de sistemas de vigilancia, control de acceso y monitoreo inteligente con IA (ESP32-CAM).</span>
-        </div>
-        <div class="item">
-            <span class="item-title">> MONITORIZACIÓN PROACTIVA DE ACTIVOS</span>
-            <span class="item-desc">Vigilancia 24/7 de sitios web y servidores contra ataques de inyección, caídas y exfiltración de datos.</span>
+            <span class="item-title">> HARDENING DE ACTIVOS CRÍTICOS</span>
+            <span class="item-desc">Blindaje proactivo de ecosistemas web y servidores bajo estándares de seguridad ofensiva avanzada.</span>
         </div>
 
-        <div class="section-title">03. HARDWARE & OPERATIONAL LAB</div>
+        <div class="section-title">02. UNIDADES DE INGENIERÍA</div>
+        <div class="item">
+            <span class="item-title">> CUSTOM SECURITY TOOLING</span>
+            <span class="item-desc">Desarrollo de hardware y software a medida para vigilancia inteligente y reconocimiento automatizado de patrones.</span>
+        </div>
+        <div class="item">
+            <span class="item-title">> MONITORIZACIÓN PERSISTENTE</span>
+            <span class="item-desc">Vigilancia continua de activos digitales mediante entornos virtualizados de alta disponibilidad.</span>
+        </div>
+
+        <div class="section-title">03. RECURSOS OPERATIVOS</div>
         <div class="badge-container">
-            <span class="badge highlight">ALFA REALTEK</span>
-            <span class="badge highlight">CARDPUTER</span>
-            <span class="badge highlight">PINEPHONE (KALI)</span>
-            <span class="badge highlight">RPi5 NATIVE</span>
-            <span class="badge">ESP32-IA</span>
-            <span class="badge">THINKPAD VM</span>
-            <span class="badge">MAC M3 UTM</span>
+            <span class="badge">SDR / RF ANALYSIS UNITS</span>
+            <span class="badge">TACTICAL MOBILE LAB</span>
+            <span class="badge">HIGH-GAIN INJECTION ARRAYS</span>
+            <span class="badge">EMBEDDED AI NODES</span>
+            <span class="badge">NATIVE KALI ENVIRONMENTS</span>
+            <span class="badge">VIRTUALIZED SANDBOXES</span>
         </div>
 
-        <div class="section-title">04. SISTEMA // LOG DE CERTIFICACIONES</div>
+        <div class="section-title">04. VALIDACIONES DE SISTEMA</div>
         <div class="badge-container">
-            <span class="badge">IBM EXPLOITATION</span>
+            <span class="badge">IBM CERTIFIED EXPLOITATION</span>
             <span class="badge">IBM ETHICAL HACKING</span>
             <span class="badge">KALI SPECIALIST</span>
         </div>
 
         <div class="contact-wrapper">
-            <a href="https://wa.me/528134322647?text=Solicito%20una%20visita%20táctica%20de%20inspección." class="btn btn-primary">
+            <a href="https://wa.me/528134322647?text=Solicito%20inspección%20táctica%20de%20seguridad." class="btn btn-primary">
                 [ AGENDAR INSPECCIÓN TÁCTICA ]
             </a>
             <a href="https://t.me/crypt3cho" class="btn btn-secondary">
-                [ CONSULTORÍA MENSUAL TELEGRAM ]
+                [ CONSULTORÍA ESTRATÉGICA ]
             </a>
             <a href="mailto:crypt3cho@proton.me" class="btn btn-outline">
-                [ ENCRYPTED EMAIL ]
+                [ ENCRYPTED CHANNEL: PROTON ]
             </a>
         </div>
 
         <div class="footer">
-            NODE: CRYPT3CHO // TECNOLOGÍA AL SERVICIO DE LA DEFENSA // <span style="color:var(--green)">ONLINE</span><span class="cursor">_</span>
+            CRYPT3CHO // NO DATA LOGGED // NO FOOTPRINT // STATUS: ONLINE<span class="cursor">_</span>
         </div>
     </div>
 </body>
