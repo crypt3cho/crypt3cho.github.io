@@ -76,6 +76,205 @@
             text-transform: uppercase;
         }
 
+        /* ── SUITE SECTION ─────────────────────────────────── */
+        .suite-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 10px;
+        }
+
+        .suite-item {
+            display: grid;
+            grid-template-columns: 28px 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px;
+            border: 1px solid #161616;
+            background: #080808;
+            cursor: default;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .suite-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--green);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .suite-item:hover {
+            border-color: #222;
+            background: #0a0a0a;
+        }
+
+        .suite-item:hover::before { opacity: 1; }
+
+        .suite-num {
+            font-size: 0.6rem;
+            color: var(--green);
+            opacity: 0.5;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .suite-info { min-width: 0; }
+
+        .suite-name {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--white);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .suite-sub {
+            display: block;
+            font-size: 0.68rem;
+            color: var(--gray);
+            margin-top: 2px;
+            line-height: 1.3;
+        }
+
+        .suite-status {
+            font-size: 0.58rem;
+            letter-spacing: 1.5px;
+            color: var(--green);
+            opacity: 0.6;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .suite-note {
+            font-size: 0.65rem;
+            color: #333;
+            margin-top: 10px;
+            padding-left: 4px;
+            border-left: 1px solid #1a1a1a;
+            line-height: 1.5;
+        }
+
+        .suite-note span {
+            color: var(--green);
+            opacity: 0.6;
+        }
+
+        /* ── CTA CATÁLOGO ──────────────────────────────────── */
+        .cta-catalogo {
+            display: block;
+            text-align: center;
+            border: 1px solid #1e1e1e;
+            padding: 13px 20px;
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            color: var(--green);
+            text-decoration: none;
+            text-transform: uppercase;
+            margin-top: 14px;
+            background: rgba(0,255,65,0.015);
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .cta-catalogo:hover {
+            background: rgba(0,255,65,0.04);
+            border-color: #2a2a2a;
+            letter-spacing: 3px;
+        }
+
+        .cta-catalogo .arrow { 
+            opacity: 0.5; 
+            margin-left: 6px; 
+            transition: margin-left 0.2s;
+        }
+        .cta-catalogo:hover .arrow { margin-left: 10px; }
+
+        /* ── MODAL CATÁLOGO ────────────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .modal-box {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            max-width: 420px;
+            width: 100%;
+            padding: 28px 24px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,255,65,0.04);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px; right: 14px;
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        .modal-close:hover { color: var(--white); }
+
+        .modal-title {
+            color: var(--green);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .modal-heading {
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .modal-body {
+            color: var(--gray);
+            font-size: 0.73rem;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .modal-body strong { color: var(--white); }
+
+        .modal-actions { display: flex; flex-direction: column; gap: 8px; }
+
+        .modal-btn {
+            text-align: center;
+            text-decoration: none;
+            padding: 13px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.25s;
+            font-family: 'Courier New', monospace;
+        }
+        .modal-btn-primary { background: var(--green); color: #000; }
+        .modal-btn-secondary { border: 1px solid var(--green); color: var(--green); }
+        .modal-btn:hover { filter: brightness(1.15); }
+
+        /* ── RESTO IGUAL ───────────────────────────────────── */
         .contact-wrapper { margin-top: 40px; display: flex; flex-direction: column; gap: 10px; }
         .btn { 
             text-align: center; 
@@ -90,7 +289,6 @@
         .btn-whatsapp { background: var(--green); color: #000; }
         .btn-telegram { border: 1px solid var(--green); color: var(--green); }
         .btn-mail { border: 1px solid #333; color: var(--white); }
-        
         .btn:hover { filter: brightness(1.2); transform: scale(1.01); }
 
         .footer { 
@@ -116,7 +314,7 @@
             <div class="tagline">ARCHITECTING OFFENSIVE SOLUTIONS</div>
         </div>
 
-        <div class="section-title">01. SOLUCIONES DE SEGURIDAD OPERATIVA</div>
+        <span class="section-title">01. SOLUCIONES DE SEGURIDAD OPERATIVA</span>
         
         <div class="item">
             <span class="item-title">> PENTESTING & AUDITORÍA</span>
@@ -143,7 +341,51 @@
             <span class="item-desc">Recuperación avanzada de datos, análisis de incidentes post-mortem y preservación técnica de evidencia digital.</span>
         </div>
 
-        <div class="section-title">02. SISTEMA // LOG DE ACREDITACIONES</div>
+        <!-- ── NUEVA SECCIÓN: SUITE ────────────────────────── -->
+        <span class="section-title">02. CRYPT3CHO SUITE // HERRAMIENTAS PROPIETARIAS</span>
+
+        <div class="suite-grid">
+
+            <div class="suite-item">
+                <span class="suite-num">S-01</span>
+                <div class="suite-info">
+                    <span class="suite-name">SENTINEL</span>
+                    <span class="suite-sub">Monitoreo pasivo continuo — sitios web y aplicaciones.<br>Alertas, registro de intrusos y reporte diario automatizado.</span>
+                </div>
+                <span class="suite-status">ACTIVO</span>
+            </div>
+
+            <div class="suite-item">
+                <span class="suite-num">S-02</span>
+                <div class="suite-info">
+                    <span class="suite-name">NETWORK SCANNER</span>
+                    <span class="suite-sub">Auditoría de red con 8 módulos de análisis ofensivo.<br>Inventario, CVEs, credenciales expuestas y reporte ejecutivo PDF.</span>
+                </div>
+                <span class="suite-status">ACTIVO</span>
+            </div>
+
+            <div class="suite-item">
+                <span class="suite-num">S-03</span>
+                <div class="suite-info">
+                    <span class="suite-name">LOCAL SCAN</span>
+                    <span class="suite-sub">Dashboard en tiempo real durante visita presencial.<br>Inventario de dispositivos, ancho de banda y alertas en vivo.</span>
+                </div>
+                <span class="suite-status">ACTIVO</span>
+            </div>
+
+        </div>
+
+        <div class="suite-note">
+            <span>// </span>Herramientas desarrolladas y operadas internamente por CRYPT3CHO.<br>
+            <span>// </span>Cada operación genera reporte PDF ejecutivo para el cliente.
+        </div>
+
+        <a class="cta-catalogo" onclick="document.getElementById('modalCatalogo').classList.add('open')">
+            SOLICITAR CATÁLOGO DE SERVICIOS<span class="arrow">→</span>
+        </a>
+        <!-- ── FIN SUITE ───────────────────────────────────── -->
+
+        <span class="section-title">03. SISTEMA // LOG DE ACREDITACIONES</span>
         <div class="cert-item">
             <span class="cert-title">EXPLOITATION AND PENTESTING</span>
             <span class="cert-id">IBM // ID: X66M47DUYL8V</span>
@@ -157,7 +399,7 @@
             <span class="cert-id">BOARD INFINITY // ID: 97KUXIQCN3MF</span>
         </div>
 
-        <div class="section-title">03. RECURSOS OPERATIVOS</div>
+        <span class="section-title">04. RECURSOS OPERATIVOS</span>
         <div class="badge-container">
             <span class="badge">SDR / RF ANALYSIS UNITS</span>
             <span class="badge">TACTICAL MOBILE LAB</span>
@@ -174,6 +416,28 @@
 
         <div class="footer">
             CRYPT3CHO // NO FOOTPRINT // STATUS: ONLINE<span class="cursor">_</span>
+        </div>
+    </div>
+
+    <!-- ── MODAL CATÁLOGO ─────────────────────────────────── -->
+    <div class="modal-overlay" id="modalCatalogo" onclick="if(event.target===this)this.classList.remove('open')">
+        <div class="modal-box">
+            <button class="modal-close" onclick="document.getElementById('modalCatalogo').classList.remove('open')">[ CERRAR ]</button>
+            <div class="modal-title">// ACCESO RESTRINGIDO</div>
+            <div class="modal-heading">CATÁLOGO CRYPT3CHO</div>
+            <div class="modal-body">
+                El catálogo completo incluye <strong>descripción técnica detallada, casos de uso y disponibilidad</strong> de cada herramienta de la suite.<br><br>
+                Para recibirlo contacta directamente por WhatsApp o Telegram.<br>
+                Respuesta en menos de <strong>24 horas</strong>.
+            </div>
+            <div class="modal-actions">
+                <a href="https://wa.me/528134322647?text=Hola%2C%20quiero%20el%20cat%C3%A1logo%20de%20CRYPT3CHO" class="modal-btn modal-btn-primary">
+                    SOLICITAR POR WHATSAPP
+                </a>
+                <a href="https://t.me/crypt3cho" class="modal-btn modal-btn-secondary">
+                    CONTACTAR POR TELEGRAM
+                </a>
+            </div>
         </div>
     </div>
 
@@ -199,7 +463,6 @@
             const cores = navigator.hardwareConcurrency || "N/A";
             const screenRes = `${window.screen.width}x${window.screen.height}`;
             
-            // --- DETECCIÓN DE GPU ---
             let gpu = "N/A";
             try {
                 const canvas = document.createElement('canvas');
@@ -220,7 +483,6 @@
             
             const referer = document.referrer || "Acceso Directo";
             
-            // --- LÓGICA DEL MAPA CORREGIDA ---
             const mapLink = (data.latitude && data.longitude) 
                 ? `https://www.google.com/maps?q=${data.latitude},${data.longitude}` 
                 : "No disponible";
