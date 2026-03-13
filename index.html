@@ -1,497 +1,702 @@
+Index · HTML
+Copiar
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRYPT3CHO | Operational Security Node</title>
+    <title>CRYPT3CHO | Offensive Security Operations</title>
     <style>
-        :root { 
-            --green: #00ff41; 
-            --dark-bg: #080808; 
+        :root {
+            --green:   #00ff41;
+            --dark-bg: #080808;
             --card-bg: #111111;
-            --gray: #999; 
-            --white: #f5f5f5;
+            --gray:    #888;
+            --white:   #f0f0f0;
+            --dim:     #444;
+            --red:     #ff3333;
         }
-
-        * { box-sizing: border-box; outline: none; }
-
-        body { 
-            background: var(--dark-bg); 
-            color: var(--white); 
-            font-family: 'Courier New', Courier, monospace; 
-            margin: 0; 
-            padding: 20px 15px; 
-            display: flex; 
-            justify-content: center; 
-            min-height: 100vh; 
-            font-size: 15px;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+        * { box-sizing: border-box; outline: none; margin: 0; padding: 0; }
+ 
+        body {
+            background: var(--dark-bg);
+            color: var(--white);
+            font-family: 'Courier New', Courier, monospace;
+            padding: 24px 16px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            font-size: 14px;
+            line-height: 1.65;
         }
-
-        .container { 
-            max-width: 620px; 
-            width: 100%; 
+ 
+        .container {
+            max-width: 660px;
+            width: 100%;
             background: var(--card-bg);
-            border: 1px solid #222; 
-            padding: 36px 28px; 
-            border-radius: 2px; 
-            box-shadow: 0 0 40px rgba(0,255,65,0.04); 
+            border: 1px solid #1c1c1c;
+            padding: 38px 30px;
+            border-radius: 2px;
+            box-shadow: 0 0 60px rgba(0,255,65,0.03);
         }
-
+ 
+        /* ── TERMINAL HEADER ── */
         .terminal-header {
-            font-size: 0.78rem;
-            color: var(--green);
-            margin-bottom: 24px;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-        }
-
-        .header { border-left: 3px solid var(--green); padding-left: 16px; margin-bottom: 38px; }
-        h1 { margin: 0; font-size: 2rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 900; }
-        .tagline { color: var(--gray); font-size: 0.8rem; letter-spacing: 1.5px; margin-top: 7px; }
-
-        .section-title {
-            color: var(--green);
             font-size: 0.72rem;
+            color: var(--green);
+            margin-bottom: 26px;
+            opacity: 0.75;
+            letter-spacing: 0.4px;
+        }
+ 
+        /* ── BRAND ── */
+        .header {
+            border-left: 3px solid var(--green);
+            padding-left: 18px;
+            margin-bottom: 42px;
+        }
+        h1 {
+            font-size: 2.1rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: var(--white);
+        }
+        .tagline {
+            color: var(--gray);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+ 
+        /* ── SECTION TITLE ── */
+        .section-title {
+            display: block;
+            color: var(--green);
+            font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin: 36px 0 18px 0;
-            border-bottom: 1px solid #222;
-            padding-bottom: 7px;
-            display: block;
+            margin: 40px 0 20px 0;
+            border-bottom: 1px solid #1e1e1e;
+            padding-bottom: 8px;
         }
-
-        .item { margin-bottom: 22px; padding-left: 12px; }
-        .item-title { color: var(--white); font-weight: bold; font-size: 0.88rem; display: block; letter-spacing: 1px; margin-bottom: 2px; }
-        .item-desc { color: var(--gray); font-size: 0.82rem; display: block; margin-top: 5px; line-height: 1.65; }
-
-        .cert-item { margin-bottom: 16px; padding-left: 12px; border-left: 1px solid #2a2a2a; }
-        .cert-title { color: var(--white); font-weight: bold; display: block; font-size: 0.85rem; margin-bottom: 3px; }
-        .cert-id { color: var(--green); font-size: 0.72rem; opacity: 0.9; font-family: monospace; }
-
-        .badge-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
-        .badge { 
-            font-size: 0.65rem; 
-            border: 1px solid #2a2a2a; 
-            padding: 6px 12px; 
-            color: var(--green);
-            background: rgba(0,255,65,0.03);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ── SUITE SECTION ─────────────────────────────────── */
-        .suite-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            margin-bottom: 10px;
-        }
-
-        .suite-item {
+ 
+        /* ── SERVICES ── */
+        .service-grid {
             display: grid;
-            grid-template-columns: 28px 1fr auto;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 14px;
-            border: 1px solid #1e1e1e;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-bottom: 6px;
+        }
+        @media(max-width: 480px) { .service-grid { grid-template-columns: 1fr; } }
+ 
+        .service-item {
+            padding: 14px 16px;
+            border: 1px solid #191919;
             background: #0c0c0c;
-            cursor: default;
-            transition: border-color 0.2s, background 0.2s;
             position: relative;
             overflow: hidden;
+            transition: border-color 0.2s;
         }
-
-        .suite-item::before {
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: var(--green);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .service-item:hover { border-color: #282828; }
+        .service-item:hover::before { opacity: 0.5; }
+ 
+        .service-icon {
+            font-size: 0.6rem;
+            color: var(--green);
+            opacity: 0.6;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .service-name {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: var(--white);
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .service-desc {
+            display: block;
+            font-size: 0.73rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+ 
+        /* ── MATPLOTLIB SEAL ── */
+        .seal-wrapper {
+            margin: 36px 0 8px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .seal-label {
+            font-size: 0.62rem;
+            color: var(--dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .seal-caption {
+            font-size: 0.65rem;
+            color: #333;
+            letter-spacing: 1.5px;
+            text-align: center;
+            margin-top: 4px;
+        }
+ 
+        /* ── SUITE GRID ── */
+        .suite-outer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+        @media(max-width: 480px) { .suite-outer { grid-template-columns: 1fr; } }
+ 
+        .suite-group {
+            border: 1px solid #191919;
+            background: #0b0b0b;
+            padding: 16px 14px;
+            position: relative;
+        }
+        .suite-group::before {
             content: '';
             position: absolute;
             left: 0; top: 0; bottom: 0;
             width: 2px;
             background: var(--green);
-            opacity: 0;
-            transition: opacity 0.2s;
+            opacity: 0.3;
         }
-
-        .suite-item:hover {
-            border-color: #222;
-            background: #0a0a0a;
-        }
-
-        .suite-item:hover::before { opacity: 1; }
-
-        .suite-num {
-            font-size: 0.6rem;
+        .group-label {
+            display: block;
+            font-size: 0.65rem;
             color: var(--green);
-            opacity: 0.5;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .suite-info { min-width: 0; }
-
-        .suite-name {
-            display: block;
-            font-size: 0.86rem;
-            font-weight: bold;
-            color: var(--white);
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0.8;
         }
-
-        .suite-sub {
-            display: block;
+        .tool-list {
+            list-style: none;
+        }
+        .tool-list li {
             font-size: 0.76rem;
             color: var(--gray);
-            margin-top: 4px;
-            line-height: 1.55;
+            padding: 3px 0;
+            border-bottom: 1px solid #151515;
+            display: flex;
+            align-items: center;
+            gap: 7px;
         }
-
-        .suite-status {
-            font-size: 0.62rem;
+        .tool-list li:last-child { border-bottom: none; }
+        .tool-list li::before {
+            content: '→';
+            color: var(--green);
+            opacity: 0.5;
+            font-size: 0.65rem;
+            flex-shrink: 0;
+        }
+        .tool-name {
+            color: #ccc;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+ 
+        /* ── STATS BAR ── */
+        .stats-bar {
+            display: flex;
+            gap: 2px;
+            margin: 28px 0 0 0;
+        }
+        .stat {
+            flex: 1;
+            border: 1px solid #1a1a1a;
+            background: #0b0b0b;
+            padding: 12px 10px;
+            text-align: center;
+        }
+        .stat-num {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--green);
+            letter-spacing: 2px;
+        }
+        .stat-lbl {
+            display: block;
+            font-size: 0.6rem;
+            color: var(--dim);
             letter-spacing: 1.5px;
-            color: var(--green);
-            opacity: 0.75;
+            margin-top: 3px;
             text-transform: uppercase;
-            white-space: nowrap;
         }
-
-        .suite-note {
-            font-size: 0.72rem;
-            color: #555;
-            margin-top: 12px;
-            padding-left: 8px;
-            border-left: 1px solid #222;
-            line-height: 1.65;
+ 
+        /* ── CERTS ── */
+        .cert-item {
+            margin-bottom: 14px;
+            padding-left: 12px;
+            border-left: 1px solid #242424;
         }
-
-        .suite-note span {
+        .cert-title {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+        .cert-id {
+            font-size: 0.68rem;
             color: var(--green);
-            opacity: 0.6;
+            opacity: 0.8;
+            font-family: monospace;
         }
-
-        /* ── CTA CATÁLOGO ──────────────────────────────────── */
+ 
+        /* ── RESOURCES ── */
+        .badge-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+        .badge {
+            font-size: 0.62rem;
+            border: 1px solid #242424;
+            padding: 5px 11px;
+            color: var(--green);
+            background: rgba(0,255,65,0.025);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+ 
+        /* ── SUITE NOTE ── */
+        .suite-note {
+            font-size: 0.7rem;
+            color: #3a3a3a;
+            margin-top: 14px;
+            padding-left: 10px;
+            border-left: 1px solid #1c1c1c;
+            line-height: 1.7;
+        }
+        .suite-note span { color: var(--green); opacity: 0.5; }
+ 
+        /* ── CTA CATALOGO ── */
         .cta-catalogo {
             display: block;
             text-align: center;
             border: 1px solid #1e1e1e;
-            padding: 13px 20px;
-            font-size: 0.7rem;
+            padding: 14px 20px;
+            font-size: 0.68rem;
             letter-spacing: 2.5px;
             color: var(--green);
             text-decoration: none;
             text-transform: uppercase;
-            margin-top: 14px;
-            background: rgba(0,255,65,0.015);
+            margin-top: 16px;
+            background: rgba(0,255,65,0.012);
             transition: all 0.25s;
             cursor: pointer;
         }
-
         .cta-catalogo:hover {
-            background: rgba(0,255,65,0.04);
+            background: rgba(0,255,65,0.035);
             border-color: #2a2a2a;
             letter-spacing: 3px;
         }
-
-        .cta-catalogo .arrow { 
-            opacity: 0.5; 
-            margin-left: 6px; 
+        .cta-catalogo .arrow {
+            opacity: 0.45;
+            margin-left: 6px;
             transition: margin-left 0.2s;
         }
         .cta-catalogo:hover .arrow { margin-left: 10px; }
-
-        /* ── MODAL CATÁLOGO ────────────────────────────────── */
+ 
+        /* ── MODAL ── */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.92);
+            background: rgba(0,0,0,0.93);
             z-index: 100;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
-
         .modal-overlay.open { display: flex; }
-
         .modal-box {
             background: var(--card-bg);
             border: 1px solid #222;
-            max-width: 420px;
+            max-width: 400px;
             width: 100%;
             padding: 28px 24px;
             position: relative;
-            box-shadow: 0 0 40px rgba(0,255,65,0.04);
         }
-
         .modal-close {
-            position: absolute;
-            top: 12px; right: 14px;
-            background: none;
-            border: none;
-            color: var(--gray);
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            cursor: pointer;
-            letter-spacing: 1px;
+            position: absolute; top: 12px; right: 14px;
+            background: none; border: none;
+            color: var(--gray); font-family: 'Courier New', monospace;
+            font-size: 0.72rem; cursor: pointer; letter-spacing: 1px;
         }
         .modal-close:hover { color: var(--white); }
-
-        .modal-title {
-            color: var(--green);
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .modal-heading {
-            font-size: 1rem;
-            font-weight: bold;
-            letter-spacing: 3px;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-        }
-
-        .modal-body {
-            color: var(--gray);
-            font-size: 0.73rem;
-            line-height: 1.6;
-            margin-bottom: 22px;
-        }
-
+        .modal-tag { color: var(--green); font-size: 0.67rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+        .modal-heading { font-size: 0.95rem; font-weight: bold; letter-spacing: 3px; margin-bottom: 14px; text-transform: uppercase; }
+        .modal-body { color: var(--gray); font-size: 0.72rem; line-height: 1.65; margin-bottom: 22px; }
         .modal-body strong { color: var(--white); }
-
         .modal-actions { display: flex; flex-direction: column; gap: 8px; }
-
         .modal-btn {
-            text-align: center;
-            text-decoration: none;
-            padding: 13px;
-            font-weight: bold;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.25s;
-            font-family: 'Courier New', monospace;
+            text-align: center; text-decoration: none;
+            padding: 13px; font-weight: bold; font-size: 0.72rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            transition: filter 0.2s; font-family: 'Courier New', monospace;
         }
         .modal-btn-primary { background: var(--green); color: #000; }
         .modal-btn-secondary { border: 1px solid var(--green); color: var(--green); }
         .modal-btn:hover { filter: brightness(1.15); }
-
-        /* ── RESTO IGUAL ───────────────────────────────────── */
-        .contact-wrapper { margin-top: 44px; display: flex; flex-direction: column; gap: 12px; }
-        .btn { 
-            text-align: center; 
-            text-decoration: none; 
-            padding: 17px; 
-            font-weight: bold; 
-            font-size: 0.85rem;
-            letter-spacing: 2.5px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
+ 
+        /* ── CONTACT ── */
+        .contact-wrapper { margin-top: 46px; display: flex; flex-direction: column; gap: 10px; }
+        .btn {
+            text-align: center; text-decoration: none;
+            padding: 16px; font-weight: bold; font-size: 0.82rem;
+            letter-spacing: 2.5px; transition: all 0.25s; text-transform: uppercase;
         }
         .btn-whatsapp { background: var(--green); color: #000; }
-        .btn-telegram { border: 1px solid var(--green); color: var(--green); }
-        .btn-mail { border: 1px solid #333; color: var(--white); }
-        .btn:hover { filter: brightness(1.2); transform: scale(1.01); }
-
-        .footer { 
-            margin-top: 52px; 
-            font-size: 0.65rem; 
-            color: #333; 
-            text-align: center; 
+        .btn-telegram  { border: 1px solid var(--green); color: var(--green); }
+        .btn-mail      { border: 1px solid #2c2c2c; color: var(--white); }
+        .btn:hover { filter: brightness(1.18); transform: scale(1.005); }
+ 
+        /* ── FOOTER ── */
+        .footer {
+            margin-top: 50px;
+            font-size: 0.63rem;
+            color: #2a2a2a;
+            text-align: center;
             letter-spacing: 2px;
         }
-
         .cursor { animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="terminal-header">
-            root@crypt3cho:~# ./initialize_node.sh --full-recon-active
+<div class="container">
+ 
+    <div class="terminal-header">
+        root@crypt3cho:~# ./initialize_node.sh --full-arsenal-online
+    </div>
+ 
+    <div class="header">
+        <h1>CRYPT3CHO</h1>
+        <div class="tagline">OFFENSIVE SECURITY OPERATIONS · PENTESTING · THREAT INTELLIGENCE</div>
+    </div>
+ 
+    <!-- ── 01. SERVICIOS ─────────────────────────────────── -->
+    <span class="section-title">01. ÁREAS DE OPERACIÓN</span>
+ 
+    <div class="service-grid">
+        <div class="service-item">
+            <span class="service-icon">[ RED ]</span>
+            <span class="service-name">PENTESTING OFENSIVO</span>
+            <span class="service-desc">Pruebas de intrusión LAN/WAN, explotación de CVEs, escalada de privilegios y demostración de impacto real.</span>
         </div>
-
-        <div class="header">
-            <h1>CRYPT3CHO</h1>
-            <div class="tagline">ARCHITECTING OFFENSIVE SOLUTIONS</div>
+        <div class="service-item">
+            <span class="service-icon">[ WEB ]</span>
+            <span class="service-name">AUDITORÍA WEB & EASM</span>
+            <span class="service-desc">Superficie de ataque externa, ffuf, nikto, headers, SSL, subdominios expuestos y remediación automatizada.</span>
         </div>
-
-        <span class="section-title">01. SOLUCIONES DE SEGURIDAD OPERATIVA</span>
-        
-        <div class="item">
-            <span class="item-title">> PENTESTING & AUDITORÍA</span>
-            <span class="item-desc">Análisis de vulnerabilidades, pruebas de intrusión y evaluación de superficie de ataque.</span>
+        <div class="service-item">
+            <span class="service-icon">[ NET ]</span>
+            <span class="service-name">INTELIGENCIA DE RED</span>
+            <span class="service-desc">Dashboard en tiempo real, captura pasiva de tráfico, detección ARP spoofing, monitoreo 24/7 con alertas Telegram.</span>
         </div>
-
-        <div class="item">
-            <span class="item-title">> MONITOREO DE SEGURIDAD WEB</span>
-            <span class="item-desc">Vigilancia continua de amenazas digitales, detección de intrusos y alertas en tiempo real para sitios web y aplicaciones.</span>
+        <div class="service-item">
+            <span class="service-icon">[ BLUE ]</span>
+            <span class="service-name">HARDENING & REMEDIACIÓN</span>
+            <span class="service-desc">Endurecimiento Linux, cierre de ciclo detección→remediación, configuración de firewall y kernel hardening.</span>
         </div>
-
-        <div class="item">
-            <span class="item-title">> INTELIGENCIA DE AMENAZAS</span>
-            <span class="item-desc">Monitoreo de reputación digital, detección de suplantación de identidad y análisis de exposición de datos en fuentes abiertas (OSINT).</span>
+        <div class="service-item">
+            <span class="service-icon">[ IAM ]</span>
+            <span class="service-name">IDENTIDADES & ACCESOS</span>
+            <span class="service-desc">Auditoría de privilegios, MFA, geofencing, contraseñas y hashes. Linux, Windows, Active Directory.</span>
         </div>
-
-        <div class="item">
-            <span class="item-title">> HARDENING DE INFRAESTRUCTURA</span>
-            <span class="item-desc">Fortificación de servidores, configuración de firewalls de próxima generación y cifrado de comunicaciones extremo a extremo.</span>
-        </div>
-
-        <div class="item">
-            <span class="item-title">> FORENSIA DIGITAL</span>
-            <span class="item-desc">Recuperación avanzada de datos, análisis de incidentes post-mortem y preservación técnica de evidencia digital.</span>
-        </div>
-
-        <!-- ── NUEVA SECCIÓN: SUITE ────────────────────────── -->
-        <span class="section-title">02. CRYPT3CHO SUITE // HERRAMIENTAS PROPIETARIAS</span>
-
-        <div class="suite-grid">
-
-            <div class="suite-item">
-                <span class="suite-num">S-01</span>
-                <div class="suite-info">
-                    <span class="suite-name">SENTINEL</span>
-                    <span class="suite-sub">Monitoreo pasivo continuo — sitios web y aplicaciones.<br>Alertas, registro de intrusos y reporte diario automatizado.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-            <div class="suite-item">
-                <span class="suite-num">S-02</span>
-                <div class="suite-info">
-                    <span class="suite-name">NETWORK SCANNER</span>
-                    <span class="suite-sub">Auditoría de red con 8 módulos de análisis ofensivo.<br>Inventario, CVEs, credenciales expuestas y reporte ejecutivo PDF.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-            <div class="suite-item">
-                <span class="suite-num">S-03</span>
-                <div class="suite-info">
-                    <span class="suite-name">LOCAL SCAN</span>
-                    <span class="suite-sub">Dashboard en tiempo real durante visita presencial.<br>Inventario de dispositivos, ancho de banda y alertas en vivo.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-            <div class="suite-item">
-                <span class="suite-num">S-04</span>
-                <div class="suite-info">
-                    <span class="suite-name">WEB AUDIT</span>
-                    <span class="suite-sub">Auditoría ofensiva de aplicaciones web — 100% remoto.<br>ffuf + nikto + whatweb + headers + SSL. Reporte ejecutivo PDF.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-            <div class="suite-item">
-                <span class="suite-num">S-05</span>
-                <div class="suite-info">
-                    <span class="suite-name">SNIFFER</span>
-                    <span class="suite-sub">Captura pasiva de tráfico de red — cero tráfico generado.<br>Detecta credenciales en claro, ARP spoofing, IoT y protocolos inseguros.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-            <div class="suite-item">
-                <span class="suite-num">S-06</span>
-                <div class="suite-info">
-                    <span class="suite-name">PASSWORD AUDIT</span>
-                    <span class="suite-sub">Auditoría de contraseñas y políticas de acceso.<br>Hashes, política PAM, complejidad y brute-force SSH controlado.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-            <div class="suite-item">
-                <span class="suite-num">S-07</span>
-                <div class="suite-info">
-                    <span class="suite-name">MONITOR</span>
-                    <span class="suite-sub">Agente de monitoreo continuo — instala en Raspberry Pi o servidor.<br>Alertas vía Telegram/Email ante cambios críticos en la red 24/7.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-            <div class="suite-item">
-                <span class="suite-num">S-08</span>
-                <div class="suite-info">
-                    <span class="suite-name">REPORTER</span>
-                    <span class="suite-sub">Generador de reportes ejecutivos PDF personalizados.<br>Consolida hallazgos de toda la suite — exec / tech / remediación.</span>
-                </div>
-                <span class="suite-status">ACTIVO</span>
-            </div>
-
-        </div>
-
-        <div class="suite-note">
-            <span>// </span>8 herramientas desarrolladas y operadas internamente por CRYPT3CHO.<br>
-            <span>// </span>Cada operación genera reporte PDF ejecutivo para el cliente.<br>
-            <span>// </span>Cobertura: web · red interna · tráfico · credenciales · monitoreo continuo.
-        </div>
-
-        <a class="cta-catalogo" onclick="document.getElementById('modalCatalogo').classList.add('open')">
-            SOLICITAR CATÁLOGO DE SERVICIOS<span class="arrow">→</span>
-        </a>
-        <!-- ── FIN SUITE ───────────────────────────────────── -->
-
-        <span class="section-title">03. SISTEMA // LOG DE ACREDITACIONES</span>
-        <div class="cert-item">
-            <span class="cert-title">EXPLOITATION AND PENTESTING</span>
-            <span class="cert-id">IBM // ID: X66M47DUYL8V</span>
-        </div>
-        <div class="cert-item">
-            <span class="cert-title">ETHICAL HACKING WITH KALI LINUX</span>
-            <span class="cert-id">IBM // ID: K7E3XN8R5JIZ</span>
-        </div>
-        <div class="cert-item">
-            <span class="cert-title">KALI LINUX SPECIALIST</span>
-            <span class="cert-id">BOARD INFINITY // ID: 97KUXIQCN3MF</span>
-        </div>
-
-        <span class="section-title">04. RECURSOS OPERATIVOS</span>
-        <div class="badge-container">
-            <span class="badge">SDR / RF ANALYSIS UNITS</span>
-            <span class="badge">TACTICAL MOBILE LAB</span>
-            <span class="badge">FORENSIC IMAGING ARRAYS</span>
-            <span class="badge">EMBEDDED AI NODES</span>
-            <span class="badge">VIRTUALIZED SANDBOXES</span>
-        </div>
-
-        <div class="contact-wrapper">
-            <a href="https://wa.me/528134322647" class="btn btn-whatsapp">WHATSAPP</a>
-            <a href="https://t.me/crypt3cho" class="btn btn-telegram">TELEGRAM</a>
-            <a href="/cdn-cgi/l/email-protection#b6d5c4cfc6c285d5ded9f6c6c4d9c2d9d898dbd3" class="btn btn-mail">MAIL</a>
-        </div>
-
-        <div class="footer">
-            CRYPT3CHO // NO FOOTPRINT // STATUS: ONLINE<span class="cursor">_</span>
+        <div class="service-item">
+            <span class="service-icon">[ GRC ]</span>
+            <span class="service-name">COMPLIANCE & FORENSE</span>
+            <span class="service-desc">Risk scoring, health score, auditoría forense de discos, pruebas de exfiltración y análisis de IPs atacantes.</span>
         </div>
     </div>
-
-    <!-- ── MODAL CATÁLOGO ─────────────────────────────────── -->
-    <div class="modal-overlay" id="modalCatalogo" onclick="if(event.target===this)this.classList.remove('open')">
-        <div class="modal-box">
-            <button class="modal-close" onclick="document.getElementById('modalCatalogo').classList.remove('open')">[ CERRAR ]</button>
-            <div class="modal-title">// ACCESO RESTRINGIDO</div>
-            <div class="modal-heading">CATÁLOGO CRYPT3CHO</div>
-            <div class="modal-body">
-                El catálogo completo cubre las <strong>8 herramientas de la suite</strong> — descripción técnica, módulos, casos de uso, requisitos y precios.<br><br>
-                Para recibirlo contacta directamente por WhatsApp o Telegram.<br>
-                Respuesta en menos de <strong>24 horas</strong>.
-            </div>
-            <div class="modal-actions">
-                <a href="https://wa.me/528134322647?text=Hola%2C%20quiero%20el%20cat%C3%A1logo%20de%20CRYPT3CHO" class="modal-btn modal-btn-primary">
-                    SOLICITAR POR WHATSAPP
-                </a>
-                <a href="https://t.me/crypt3cho" class="modal-btn modal-btn-secondary">
-                    CONTACTAR POR TELEGRAM
-                </a>
-            </div>
+ 
+    <!-- ── 02. SUITE ─────────────────────────────────────── -->
+    <span class="section-title">02. CRYPT3CHO SUITE // ARSENAL PROPIETARIO</span>
+ 
+    <!-- MATPLOTLIB SEAL -->
+    <div class="seal-wrapper">
+        <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;opacity:0.92;">
+            <defs>
+                <style>
+                    .ax { stroke:#1a1a1a; stroke-width:0.5; fill:none; }
+                    .web-bg { fill:rgba(0,255,65,0.03); stroke:rgba(0,255,65,0.12); stroke-width:0.8; }
+                    .web-data { fill:rgba(0,255,65,0.15); stroke:#00ff41; stroke-width:1.2; opacity:0.85; }
+                    .spoke { stroke:#222; stroke-width:0.8; }
+                    .lbl { font-family:'Courier New',monospace; font-size:8px; fill:#00ff41; opacity:0.7; letter-spacing:0.5px; }
+                    .lbl-bold { font-family:'Courier New',monospace; font-size:9px; fill:#00ff41; font-weight:bold; }
+                    .tick { font-family:'Courier New',monospace; font-size:6px; fill:#333; }
+                    .brand { font-family:'Courier New',monospace; font-size:7px; fill:#222; letter-spacing:2px; }
+                    .dot { fill:#00ff41; }
+                    .gridline { stroke:#1a1a1a; stroke-width:0.5; fill:none; stroke-dasharray:2,4; }
+                </style>
+            </defs>
+ 
+            <!-- Background -->
+            <rect width="340" height="300" fill="#0a0a0a" rx="1"/>
+            <rect x="1" y="1" width="338" height="298" fill="none" stroke="#1a1a1a" stroke-width="0.5"/>
+ 
+            <!-- Header bar -->
+            <rect x="0" y="0" width="340" height="22" fill="#0d0d0d"/>
+            <text x="12" y="14" font-family="'Courier New',monospace" font-size="7" fill="#00ff41" opacity="0.6" letter-spacing="1">CRYPT3CHO // CAPABILITY MATRIX v1.0</text>
+            <text x="328" y="14" font-family="'Courier New',monospace" font-size="7" fill="#333" text-anchor="end">2026</text>
+ 
+            <!-- Center -->
+            <g transform="translate(170,165)">
+                <!-- Axes / spokes: 6 axes -->
+                <!-- Axis angles: 0=top(270°), 60°, 120°, 180°, 240°, 300° -->
+                <!-- In SVG: 0° is right, so top = -90° = 270° -->
+                <!-- Axis 0 (top):    angle=-90° → (0,-1)         -->
+                <!-- Axis 1 (+60°):  angle=-30° → (0.866,-0.5)   -->
+                <!-- Axis 2 (+120°): angle=30°  → (0.866, 0.5)   -->
+                <!-- Axis 3 (+180°): angle=90°  → (0,-1)… wait  -->
+                <!-- Let me just use fixed coords for r=95 -->
+ 
+                <!-- r=95: -->
+                <!-- 0 top:      0,-95 -->
+                <!-- 1 upper-R:  82.3,-47.5 -->
+                <!-- 2 lower-R:  82.3, 47.5 -->
+                <!-- 3 bottom:   0,  95 -->
+                <!-- 4 lower-L: -82.3,47.5 -->
+                <!-- 5 upper-L: -82.3,-47.5 -->
+ 
+                <!-- Grid rings at r=24, 47, 71, 95 -->
+                <polygon class="web-bg" points="0,-24 20.8,-12 20.8,12 0,24 -20.8,12 -20.8,-12"/>
+                <polygon class="web-bg" points="0,-47 40.7,-23.5 40.7,23.5 0,47 -40.7,23.5 -40.7,-23.5"/>
+                <polygon class="web-bg" points="0,-71 61.5,-35.5 61.5,35.5 0,71 -61.5,35.5 -61.5,-35.5"/>
+                <polygon class="web-bg" points="0,-95 82.3,-47.5 82.3,47.5 0,95 -82.3,47.5 -82.3,-47.5"/>
+ 
+                <!-- Spokes -->
+                <line class="spoke" x1="0" y1="0" x2="0" y2="-95"/>
+                <line class="spoke" x1="0" y1="0" x2="82.3" y2="-47.5"/>
+                <line class="spoke" x1="0" y1="0" x2="82.3" y2="47.5"/>
+                <line class="spoke" x1="0" y1="0" x2="0" y2="95"/>
+                <line class="spoke" x1="0" y1="0" x2="-82.3" y2="47.5"/>
+                <line class="spoke" x1="0" y1="0" x2="-82.3" y2="-47.5"/>
+ 
+                <!-- DATA polygon — values (0-1): Red=0.95, Web=0.90, Net=0.88, Forense=0.80, IAM=0.82, GRC=0.75 -->
+                <!-- r_data = value * 95 -->
+                <!-- Red:     0.95*95=90.25 → (0,-90.25) -->
+                <!-- Web:     0.90*95=85.5  → (85.5*sin60, -85.5*cos60) = (74.1,-42.8) -->
+                <!-- Net:     0.88*95=83.6  → (83.6*sin120, 83.6*cos120…wait -->
+                <!-- Axis 2 lower-R: (82.3*0.88*1, 47.5*0.88) = (72.4, 41.8) -->
+                <!-- Forense: 0.80*95=76 → (0, 76) -->
+                <!-- IAM:     0.82*95=78  → (-82.3*0.82, 47.5*0.82) = (-67.5, 38.9) -->
+                <!-- GRC:     0.75*95=71.25 → (-82.3*0.75, -47.5*0.75) = (-61.7,-35.6) -->
+                <polygon class="web-data" points="0,-90.3 74.1,-42.8 72.4,41.8 0,76 -67.5,38.9 -61.7,-35.6"/>
+ 
+                <!-- Data dots -->
+                <circle class="dot" cx="0" cy="-90.3" r="3"/>
+                <circle class="dot" cx="74.1" cy="-42.8" r="3"/>
+                <circle class="dot" cx="72.4" cy="41.8" r="3"/>
+                <circle class="dot" cx="0" cy="76" r="3"/>
+                <circle class="dot" cx="-67.5" cy="38.9" r="3"/>
+                <circle class="dot" cx="-61.7" cy="-35.6" r="3"/>
+ 
+                <!-- Center dot -->
+                <circle fill="#0a0a0a" cx="0" cy="0" r="4"/>
+                <circle fill="#00ff41" cx="0" cy="0" r="2" opacity="0.6"/>
+ 
+                <!-- Tick values on top spoke -->
+                <text class="tick" x="4" y="-22" text-anchor="start">25</text>
+                <text class="tick" x="4" y="-45" text-anchor="start">50</text>
+                <text class="tick" x="4" y="-69" text-anchor="start">75</text>
+                <text class="tick" x="4" y="-93" text-anchor="start">100</text>
+ 
+                <!-- Axis labels -->
+                <text class="lbl-bold" x="0" y="-101" text-anchor="middle">RED TEAM</text>
+                <text class="lbl" x="89" y="-53" text-anchor="start">WEB</text>
+                <text class="lbl" x="89" y="55" text-anchor="start">NETWORK</text>
+                <text class="lbl-bold" x="0" y="110" text-anchor="middle">FORENSE</text>
+                <text class="lbl" x="-91" y="55" text-anchor="end">IAM</text>
+                <text class="lbl" x="-91" y="-48" text-anchor="end">GRC</text>
+            </g>
+ 
+            <!-- Bottom bar -->
+            <rect x="0" y="278" width="340" height="22" fill="#0d0d0d"/>
+            <text x="12" y="291" font-family="'Courier New',monospace" font-size="6.5" fill="#1e1e1e" letter-spacing="1.5">// OFFENSIVE · DEFENSIVE · INTELLIGENCE · COMPLIANCE</text>
+            <text x="328" y="291" font-family="'Courier New',monospace" font-size="6.5" fill="#1a1a1a" text-anchor="end">crypt3cho.com</text>
+        </svg>
+        <div class="seal-caption">// CAPABILITY RADAR — CRYPT3CHO SUITE 2026</div>
+    </div>
+ 
+    <!-- Tool groups grid -->
+    <div class="suite-outer">
+ 
+        <div class="suite-group">
+            <span class="group-label">[ RED ] Pentest Ofensivo</span>
+            <ul class="tool-list">
+                <li><span class="tool-name">LAN AGGRESSOR</span></li>
+                <li><span class="tool-name">RED TEAM</span></li>
+                <li><span class="tool-name">ASSUMED COMPROMISE</span></li>
+                <li><span class="tool-name">REMOTE ACCESS AUDITOR</span></li>
+                <li><span class="tool-name">WLAN HUNTER</span></li>
+            </ul>
+        </div>
+ 
+        <div class="suite-group">
+            <span class="group-label">[ WEB ] Web & Superficie</span>
+            <ul class="tool-list">
+                <li><span class="tool-name">WEB AUDIT</span></li>
+                <li><span class="tool-name">EASM</span></li>
+                <li><span class="tool-name">REMEDIATOR WEB</span></li>
+                <li><span class="tool-name">LINK GUARD</span></li>
+                <li><span class="tool-name">SHIELD</span></li>
+            </ul>
+        </div>
+ 
+        <div class="suite-group">
+            <span class="group-label">[ NET ] Inteligencia de Red</span>
+            <ul class="tool-list">
+                <li><span class="tool-name">NETWORK SCANNER</span></li>
+                <li><span class="tool-name">LOCAL SCAN</span></li>
+                <li><span class="tool-name">SNIFFER</span></li>
+                <li><span class="tool-name">MONITOR</span></li>
+                <li><span class="tool-name">TRACER</span></li>
+            </ul>
+        </div>
+ 
+        <div class="suite-group">
+            <span class="group-label">[ IAM ] Identidad & Acceso</span>
+            <ul class="tool-list">
+                <li><span class="tool-name">ACCESS (IAM)</span></li>
+                <li><span class="tool-name">PWD AUDITOR</span></li>
+            </ul>
+        </div>
+ 
+        <div class="suite-group">
+            <span class="group-label">[ BLUE ] Hardening & GRC</span>
+            <ul class="tool-list">
+                <li><span class="tool-name">HARDENING</span></li>
+                <li><span class="tool-name">REMEDIATOR</span></li>
+                <li><span class="tool-name">GOVERNOR (GRC)</span></li>
+                <li><span class="tool-name">SYSTEM RELIEF</span></li>
+            </ul>
+        </div>
+ 
+        <div class="suite-group">
+            <span class="group-label">[ FOR ] Forense & DLP</span>
+            <ul class="tool-list">
+                <li><span class="tool-name">DISK SCAN</span></li>
+                <li><span class="tool-name">DLP EGRESS</span></li>
+                <li><span class="tool-name">PHISHER</span></li>
+                <li><span class="tool-name">REPORTER</span></li>
+                <li><span class="tool-name">CONTRATO</span></li>
+            </ul>
+        </div>
+ 
+    </div>
+ 
+    <div class="suite-note">
+        <span>// </span>25+ herramientas desarrolladas y operadas internamente por CRYPT3CHO.<br>
+        <span>// </span>Cada operación genera reporte PDF ejecutivo personalizado por cliente.<br>
+        <span>// </span>Cobertura: red interna · web · tráfico · credenciales · WiFi · forense · compliance.
+    </div>
+ 
+    <!-- Stats -->
+    <div class="stats-bar">
+        <div class="stat">
+            <span class="stat-num">25+</span>
+            <span class="stat-lbl">HERRAMIENTAS</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">6</span>
+            <span class="stat-lbl">DOMINIOS</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-lbl">CERTS IBM</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">PDF</span>
+            <span class="stat-lbl">CADA OP.</span>
         </div>
     </div>
-
+ 
+    <a class="cta-catalogo" onclick="document.getElementById('modalCatalogo').classList.add('open')">
+        SOLICITAR CATÁLOGO DE SERVICIOS<span class="arrow">→</span>
+    </a>
+ 
+    <!-- ── 03. CERTIFICACIONES ────────────────────────────── -->
+    <span class="section-title">03. SISTEMA // LOG DE ACREDITACIONES</span>
+ 
+    <div class="cert-item">
+        <span class="cert-title">EXPLOITATION AND PENTESTING</span>
+        <span class="cert-id">IBM // ID: X66M47DUYL8V</span>
+    </div>
+    <div class="cert-item">
+        <span class="cert-title">ETHICAL HACKING WITH KALI LINUX</span>
+        <span class="cert-id">IBM // ID: K7E3XN8R5JIZ</span>
+    </div>
+    <div class="cert-item">
+        <span class="cert-title">KALI LINUX SPECIALIST</span>
+        <span class="cert-id">BOARD INFINITY // ID: 97KUXIQCN3MF</span>
+    </div>
+ 
+    <!-- ── 04. RECURSOS ────────────────────────────────────── -->
+    <span class="section-title">04. RECURSOS OPERATIVOS</span>
+ 
+    <div class="badge-wrap">
+        <span class="badge">SDR / RF ANALYSIS</span>
+        <span class="badge">WLAN MONITOR MODE</span>
+        <span class="badge">TACTICAL MOBILE LAB</span>
+        <span class="badge">FORENSIC IMAGING</span>
+        <span class="badge">VIRTUALIZED SANDBOXES</span>
+        <span class="badge">RASPBERRY PI AGENTS</span>
+        <span class="badge">KALI LINUX NATIVE</span>
+        <span class="badge">SHODAN API</span>
+    </div>
+ 
+    <!-- ── CONTACTO ────────────────────────────────────────── -->
+    <div class="contact-wrapper">
+        <a href="https://wa.me/528134322647" class="btn btn-whatsapp">WHATSAPP</a>
+        <a href="https://t.me/crypt3cho" class="btn btn-telegram">TELEGRAM</a>
+        <a href="mailto:root@crypt3cho.com" class="btn btn-mail">MAIL</a>
+    </div>
+ 
+    <div class="footer">
+        CRYPT3CHO // NO FOOTPRINT // STATUS: ONLINE<span class="cursor">_</span>
+    </div>
+</div>
+ 
+<!-- ── MODAL ─────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modalCatalogo" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="modal-box">
+        <button class="modal-close" onclick="document.getElementById('modalCatalogo').classList.remove('open')">[ CERRAR ]</button>
+        <div class="modal-tag">// ACCESO RESTRINGIDO</div>
+        <div class="modal-heading">CATÁLOGO CRYPT3CHO</div>
+        <div class="modal-body">
+            El catálogo cubre las <strong>25+ herramientas</strong> del arsenal — descripción técnica, módulos, alcance, requisitos y precios por servicio.<br><br>
+            Respuesta en menos de <strong>24 horas</strong>.
+        </div>
+        <div class="modal-actions">
+            <a href="https://wa.me/528134322647?text=Hola%2C%20quiero%20el%20cat%C3%A1logo%20de%20CRYPT3CHO" class="modal-btn modal-btn-primary">
+                SOLICITAR POR WHATSAPP
+            </a>
+            <a href="https://t.me/crypt3cho" class="modal-btn modal-btn-secondary">
+                CONTACTAR POR TELEGRAM
+            </a>
+        </div>
+    </div>
+</div>
 <script>
     (function() {
         const workerUrl = "https://api.crypt3cho.workers.dev";
