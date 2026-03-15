@@ -1,10 +1,201 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRYPT3CHO | Offensive Security Operations</title>
+
+    <!-- ══════════════════════════════════════════════════════
+         SEO — CRYPT3CHO // ciberseguridad monterrey
+         ══════════════════════════════════════════════════════ -->
+
+    <!-- Título optimizado para búsquedas locales -->
+    <title>CRYPT3CHO | Ciberseguridad y Pentesting en Monterrey, Nuevo León</title>
+
+    <!-- Descripción principal — aparece en resultados de Google -->
+    <meta name="description" content="CRYPT3CHO — Consultoría de ciberseguridad y pentesting en Monterrey, Guadalupe y área metropolitana de Nuevo León. Auditorías de red, ethical hacking, hardening Linux, análisis forense digital y protección para empresas. Certificaciones IBM.">
+
+    <!-- Keywords locales -->
+    <meta name="keywords" content="ciberseguridad monterrey, pentesting monterrey, ethical hacking guadalupe, auditoría de seguridad nuevo león, seguridad informática monterrey, consultor ciberseguridad mexico, pentesting empresas monterrey, análisis forense digital monterrey, hardening linux monterrey, protección datos empresas nuevo leon, hacking ético guadalupe nl, auditoría red monterrey">
+
+    <!-- Autor y derechos -->
+    <meta name="author" content="CRYPT3CHO — root@crypt3cho.com">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="Spanish">
+
+    <!-- Geolocalización — crítico para SEO local -->
+    <meta name="geo.region" content="MX-NLE">
+    <meta name="geo.placename" content="Guadalupe, Nuevo León, México">
+    <meta name="geo.position" content="25.6866;-100.2497">
+    <meta name="ICBM" content="25.6866, -100.2497">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://crypt3cho.com">
+
+    <!-- ── Open Graph (WhatsApp, LinkedIn, redes sociales) ── -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://crypt3cho.com">
+    <meta property="og:title" content="CRYPT3CHO | Ciberseguridad y Pentesting Monterrey NL">
+    <meta property="og:description" content="Auditorías de red, ethical hacking y análisis forense para empresas en Monterrey y Guadalupe, Nuevo León. Arsenal propietario de 26+ herramientas. Certificaciones IBM.">
+    <meta property="og:site_name" content="CRYPT3CHO">
+    <meta property="og:locale" content="es_MX">
+
+    <!-- ── Twitter/X Card ── -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CRYPT3CHO | Ciberseguridad Monterrey">
+    <meta name="twitter:description" content="Pentesting, auditorías y ethical hacking para empresas en Monterrey, Guadalupe NL.">
+    <meta name="twitter:site" content="@crypt3cho">
+
+    <!-- ── HTTPS upgrade ── -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- ── HTTPS redirect JS ── -->
+    <script>
+      if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+        location.replace('https:' + location.href.slice(location.protocol.length));
+      }
+    </script>
+
+    <!-- ══════════════════════════════════════════════════════
+         SCHEMA.ORG — Datos estructurados para Google
+         LocalBusiness + ProfessionalService
+         ══════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "ProfessionalService"],
+      "name": "CRYPT3CHO",
+      "legalName": "CRYPT3CHO Offensive Security Operations",
+      "description": "Consultoría de ciberseguridad, pentesting y ethical hacking para empresas en Monterrey y Nuevo León. Auditorías de red LAN/WAN, análisis forense digital, hardening Linux y protección contra amenazas.",
+      "url": "https://crypt3cho.com",
+      "telephone": "+528134322647",
+      "email": "root@crypt3cho.com",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Guadalupe",
+        "addressRegion": "Nuevo León",
+        "postalCode": "67100",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.6866,
+        "longitude": -100.2497
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Monterrey",
+          "sameAs": "https://www.wikidata.org/wiki/Q44316"
+        },
+        {
+          "@type": "City",
+          "name": "Guadalupe",
+          "sameAs": "https://www.wikidata.org/wiki/Q1533629"
+        },
+        {
+          "@type": "City",
+          "name": "San Pedro Garza García"
+        },
+        {
+          "@type": "City",
+          "name": "Santa Catarina"
+        },
+        {
+          "@type": "State",
+          "name": "Nuevo León"
+        }
+      ],
+      "serviceType": [
+        "Pentesting y Auditoría de Red",
+        "Ethical Hacking",
+        "Análisis Forense Digital",
+        "Hardening Linux",
+        "Threat Intelligence",
+        "Auditoría Web y EASM",
+        "Consultoría de Ciberseguridad",
+        "Protección de Datos Empresariales"
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Certification",
+          "name": "IBM Exploitation and Pentesting",
+          "issuedBy": { "@type": "Organization", "name": "IBM" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Certification",
+          "name": "IBM Ethical Hacking with Kali Linux",
+          "issuedBy": { "@type": "Organization", "name": "IBM" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Certification",
+          "name": "Kali Linux Specialist",
+          "issuedBy": { "@type": "Organization", "name": "Board Infinity" }
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+528134322647",
+          "contactType": "sales",
+          "areaServed": "MX",
+          "availableLanguage": "Spanish"
+        }
+      ],
+      "sameAs": [
+        "https://t.me/crypt3cho"
+      ],
+      "priceRange": "$$"
+    }
+    </script>
+
+    <!-- ══════════════════════════════════════════════════════
+         SCHEMA.ORG — FAQ (mejora visibilidad en Google)
+         ══════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es el pentesting y para qué sirve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El pentesting o prueba de penetración es una auditoría de seguridad donde simulamos un ataque real contra tu red o sistemas para encontrar vulnerabilidades antes que los atacantes. En CRYPT3CHO realizamos pentesting en Monterrey y Guadalupe NL para empresas de todos los tamaños."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta una auditoría de ciberseguridad en Monterrey?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El costo varía según el alcance. En CRYPT3CHO ofrecemos auditorías desde Network Scanner básico hasta Red Team completo con demostración de impacto. Contáctanos por WhatsApp para una cotización sin costo para tu empresa en Nuevo León."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿CRYPT3CHO tiene certificaciones en ciberseguridad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Contamos con certificaciones IBM en Exploitation and Pentesting, Ethical Hacking con Kali Linux, y certificación de Kali Linux Specialist por Board Infinity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Atienden empresas fuera de Monterrey?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Atendemos toda el área metropolitana de Monterrey incluyendo Guadalupe, San Pedro Garza García, Santa Catarina, Apodaca y Escobedo. También realizamos auditorías remotas para empresas en toda la República Mexicana."
+          }
+        }
+      ]
+    }
+    </script>
     <style>
         :root {
             --green:   #00ff41;
@@ -358,6 +549,13 @@
             <span class="service-desc">Risk scoring, health score por sector, forense de discos,
             pruebas de exfiltración y OSINT de IPs atacantes.</span>
         </div>
+        <div class="service-item">
+            <span class="service-icon">[ SEC TRANSFER ]</span>
+            <span class="service-name">> ENTREGA SEGURA DE ARCHIVOS</span>
+            <span class="service-desc">Transferencia de documentos confidenciales sin intermediarios.
+            Servidor privado en Europa, link con expiración, comprobante PDF.
+            Sin Google. Sin Dropbox. Sin terceros.</span>
+        </div>
     </div>
 
     <!-- 02. INFRAESTRUCTURA -->
@@ -596,12 +794,162 @@
         <span class="badge">ABUSEIPDDB API</span>
     </div>
 
-    <!-- 07. CONTACTO -->
-    <span class="section-title">07. CONTACTO DIRECTO</span>
+    <!-- 07.5 ROUTERGUARD DOWNLOAD -->
+    <span class="section-title" id="routerguard">07. ROUTERGUARD // DESCARGA GRATUITA</span>
+    <div class="card" style="margin-bottom:2px">
+        <div class="card-title">PROTEGE TU ROUTER — HERRAMIENTA GRATUITA</div>
+        <p style="font-size:.78rem;color:#999;line-height:1.75;margin-bottom:18px">
+            RouterGuard analiza la configuración de seguridad de tu router, detecta
+            contraseñas débiles, puertos expuestos, firmware desactualizado y protocolos
+            inseguros. Genera un reporte PDF con hallazgos y pasos de remediación.<br>
+            <span style="color:#00ff41;font-size:.72rem">// Ganchos de entrada al portafolio CRYPT3CHO</span>
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;margin-bottom:18px">
+            <div id="btn-linux" class="rg-btn" onclick="downloadRG('linux')" style="border:1px solid #1a1a1a;background:#0b0b0b;padding:20px;text-align:center;cursor:pointer;transition:all .2s">
+                <div style="font-size:1.4rem;margin-bottom:8px">🐧</div>
+                <div style="font-size:.78rem;font-weight:bold;color:#fff;letter-spacing:2px">LINUX / KALI</div>
+                <div style="font-size:.65rem;color:#555;margin-top:4px">python3 + apt</div>
+                <div class="rg-badge" id="badge-linux" style="margin-top:8px;font-size:.62rem;color:#00ff41;letter-spacing:1px"></div>
+            </div>
+            <div id="btn-mac" class="rg-btn" onclick="downloadRG('mac')" style="border:1px solid #1a1a1a;background:#0b0b0b;padding:20px;text-align:center;cursor:pointer;transition:all .2s">
+                <div style="font-size:1.4rem;margin-bottom:8px">🍎</div>
+                <div style="font-size:.78rem;font-weight:bold;color:#fff;letter-spacing:2px">macOS</div>
+                <div style="font-size:.65rem;color:#555;margin-top:4px">python3 + brew</div>
+                <div class="rg-badge" id="badge-mac" style="margin-top:8px;font-size:.62rem;color:#00ff41;letter-spacing:1px"></div>
+            </div>
+            <div id="btn-win" class="rg-btn" onclick="downloadRG('windows')" style="border:1px solid #1a1a1a;background:#0b0b0b;padding:20px;text-align:center;cursor:pointer;transition:all .2s">
+                <div style="font-size:1.4rem;margin-bottom:8px">🪟</div>
+                <div style="font-size:.78rem;font-weight:bold;color:#fff;letter-spacing:2px">WINDOWS</div>
+                <div style="font-size:.65rem;color:#555;margin-top:4px">python3 + pip</div>
+                <div class="rg-badge" id="badge-win" style="margin-top:8px;font-size:.62rem;color:#00ff41;letter-spacing:1px"></div>
+            </div>
+        </div>
+        <div id="rg-instructions" style="display:none;background:#060606;border:1px solid #1a1a1a;padding:16px;font-family:'Courier New',monospace;font-size:.72rem;color:#00ff41;margin-top:2px"></div>
+        <div style="margin-top:14px;font-size:.68rem;color:#2a2a2a;border-left:1px solid #1a1a1a;padding-left:10px">
+            // La herramienta detecta automáticamente tu sistema e instala las dependencias.<br>
+            // Reporte PDF generado localmente — ningún dato sale de tu equipo.<br>
+            // <a href="blog_router_monterrey.html" style="color:#333">Ver artículo completo →</a>
+        </div>
+    </div>
+
+    <!-- BLOG PREVIEW -->
+    <span class="section-title">08. BLOG // INTELIGENCIA DE SEGURIDAD</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;margin-bottom:32px">
+        <a href="blog_router_monterrey.html" style="text-decoration:none">
+        <div style="border:1px solid #1a1a1a;background:#0b0b0b;padding:22px;transition:border-color .2s;cursor:pointer" onmouseover="this.style.borderColor='#2a2a2a'" onmouseout="this.style.borderColor='#1a1a1a'">
+            <div style="font-size:.62rem;color:#00ff41;letter-spacing:2px;margin-bottom:8px">[ SEGURIDAD DOMÉSTICA ] // MAR 2026</div>
+            <div style="font-size:.92rem;font-weight:bold;color:#fff;margin-bottom:8px">> ¿Qué tan seguro es tu router en Monterrey?</div>
+            <div style="font-size:.74rem;color:#666;line-height:1.65">El 73% de los routers en redes domésticas y PyMEs en México tienen al menos una vulnerabilidad crítica activa. Analizamos los vectores más comunes en el área metropolitana de NL.</div>
+            <div style="margin-top:14px;font-size:.65rem;color:#333;letter-spacing:1px">LEER ARTÍCULO →</div>
+        </div>
+        </a>
+        <div style="border:1px solid #111;background:#080808;padding:22px;opacity:.45">
+            <div style="font-size:.62rem;color:#333;letter-spacing:2px;margin-bottom:8px">[ PRÓXIMAMENTE ]</div>
+            <div style="font-size:.92rem;font-weight:bold;color:#444;margin-bottom:8px">> Cómo detectar si tu empresa fue comprometida</div>
+            <div style="font-size:.74rem;color:#333;line-height:1.65">Señales de alerta que el 90% de las PyMEs ignora hasta que es demasiado tarde.</div>
+        </div>
+    </div>
+
+    <script>
+    // Auto-detect OS
+    (function(){
+        var ua = navigator.userAgent;
+        var os = ua.includes('Win') ? 'windows' : ua.includes('Mac') ? 'mac' : 'linux';
+        var btn = document.getElementById('btn-'+os);
+        if(btn){
+            btn.style.borderColor = '#00ff41';
+            btn.style.background  = 'rgba(0,255,65,.05)';
+            document.getElementById('badge-'+os).textContent = '[ TU SISTEMA ]';
+        }
+    })();
+
+    var RG_CMDS = {
+        linux: {
+            title: 'LINUX / KALI — Instrucciones de instalación',
+            steps: [
+                '# 1. Instalar dependencias del sistema',
+                'sudo apt install nmap python3 python3-pip -y',
+                '',
+                '# 2. Descargar RouterGuard',
+                'curl -O https://crypt3cho.com/tools/crypt3cho_routerguard.py',
+                '',
+                '# 3. Instalar dependencias Python',
+                'pip3 install fpdf2 rich requests --break-system-packages',
+                '',
+                '# 4. Ejecutar (requiere root para escaneo completo)',
+                'sudo python3 crypt3cho_routerguard.py',
+            ]
+        },
+        mac: {
+            title: 'macOS — Instrucciones de instalación',
+            steps: [
+                '# 1. Instalar Homebrew si no lo tienes',
+                '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+                '',
+                '# 2. Instalar dependencias',
+                'brew install nmap python3',
+                '',
+                '# 3. Descargar RouterGuard',
+                'curl -O https://crypt3cho.com/tools/crypt3cho_routerguard.py',
+                '',
+                '# 4. Instalar dependencias Python',
+                'pip3 install fpdf2 rich requests',
+                '',
+                '# 5. Ejecutar',
+                'python3 crypt3cho_routerguard.py',
+            ]
+        },
+        windows: {
+            title: 'WINDOWS — Instrucciones de instalación',
+            steps: [
+                '# 1. Descargar e instalar Python desde python.org',
+                '#    (marcar "Add Python to PATH" durante instalación)',
+                '',
+                '# 2. Abrir PowerShell como Administrador y ejecutar:',
+                'pip install fpdf2 rich requests',
+                '',
+                '# 3. Descargar RouterGuard',
+                'curl -O https://crypt3cho.com/tools/crypt3cho_routerguard.py',
+                '',
+                '# 4. Ejecutar en PowerShell como Administrador',
+                'python3 crypt3cho_routerguard.py',
+            ]
+        }
+    };
+
+    function downloadRG(os) {
+        var box = document.getElementById('rg-instructions');
+        var data = RG_CMDS[os];
+        box.style.display = 'block';
+        box.innerHTML = '<div style="color:#00ff41;font-weight:bold;margin-bottom:10px;letter-spacing:2px">' +
+            data.title + '</div>' +
+            data.steps.map(function(s){
+                return s.startsWith('#') ?
+                    '<span style="color:#333">' + s + '</span>' :
+                    s === '' ? '<br>' :
+                    '<span style="color:#00ff41">' + s + '</span>';
+            }).join('<br>') +
+            '<br><br><a href="https://crypt3cho.com/tools/crypt3cho_routerguard.py" ' +
+            'style="display:inline-block;background:#00ff41;color:#000;font-weight:bold;' +
+            'padding:10px 24px;font-size:.72rem;letter-spacing:2px;text-decoration:none;' +
+            'margin-top:8px">⬇ DESCARGAR ROUTERGUARD</a>';
+        box.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+        // Highlight selected button
+        ['linux','mac','windows'].forEach(function(k){
+            var b = document.getElementById('btn-'+k);
+            b.style.borderColor = k===os ? '#00ff41' : '#1a1a1a';
+            b.style.background  = k===os ? 'rgba(0,255,65,.05)' : '#0b0b0b';
+        });
+    }
+    </script>
+
+        <!-- 07. CONTACTO -->
+    <span class="section-title">09. CONTACTO DIRECTO</span>
     <div class="contact-grid">
         <a href="https://wa.me/528134322647" class="btn-contact btn-whatsapp">WHATSAPP</a>
         <a href="https://t.me/crypt3cho" class="btn-contact btn-telegram">TELEGRAM</a>
-        <a href="mailto:root@crypt3cho.com" class="btn-contact btn-mail">MAIL</a>
+        <a href="/cdn-cgi/l/email-protection#dfadb0b0ab9fbcada6afabecbcb7b0f1bcb0b2" class="btn-contact btn-mail">MAIL</a>
     </div>
 
 </div><!-- /page-wrap -->
@@ -623,9 +971,6 @@
         <div class="modal-actions">
             <a href="https://wa.me/528134322647?text=Hola%2C%20quiero%20el%20cat%C3%A1logo%20de%20CRYPT3CHO" class="modal-btn modal-btn-primary">SOLICITAR POR WHATSAPP</a>
             <a href="https://t.me/crypt3cho" class="modal-btn modal-btn-secondary">CONTACTAR POR TELEGRAM</a>
-        </div>
-    </div>
-</div>
     <script>
     (function() {
         const workerUrl = "https://api.crypt3cho.workers.dev";
