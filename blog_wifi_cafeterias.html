@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi pública en cafeterías — qué datos expones sin saberlo · CRYPT3CHO Blog</title>
+    <meta name="description" content="Cada vez que te conectas al WiFi de una cafetería, restaurante o centro comercial sin tomar precauciones, expones más de lo que crees. CRYPT3CHO analiza los vectores reales de ataque en redes públicas.">
+    <style>
+        :root {
+            --dark-bg: #080808;
+            --white:   #e8e8e8;
+            --green:   #00ff41;
+            --gray:    #888;
+            --dim:     #444;
+            --border:  #1a1a1a;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        html, body {
+            background: var(--dark-bg);
+            color: var(--white);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.65;
+            min-height: 100vh;
+        }
+        .topbar {
+            width: 100%;
+            background: #060606;
+            border-bottom: 1px solid var(--border);
+            padding: 10px clamp(24px, 5vw, 80px);
+            font-size: 0.70rem;
+            color: var(--green);
+            opacity: 0.65;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .page-wrap {
+            width: 100%;
+            padding: 0 clamp(24px, 5vw, 80px);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 32px 0 24px;
+            font-size: .70rem;
+            color: var(--dim);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color .2s;
+        }
+        .back-link:hover { color: var(--green); }
+        .post-tag {
+            font-size: .62rem;
+            color: var(--green);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: bold;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            letter-spacing: .5px;
+        }
+        .post-meta {
+            font-size: .68rem;
+            color: var(--dim);
+            margin-bottom: 36px;
+            letter-spacing: .5px;
+        }
+        .post-meta strong { color: var(--green); }
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 2px;
+            margin-bottom: 40px;
+        }
+        .stat-box {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            padding: 18px 16px;
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--green);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .stat-label {
+            font-size: .62rem;
+            color: var(--dim);
+            line-height: 1.4;
+            letter-spacing: .5px;
+        }
+        h2 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 36px 0 12px;
+            letter-spacing: 1px;
+        }
+        h2::before { content: '## '; color: var(--green); }
+        p {
+            font-size: .82rem;
+            color: #888;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+        strong { color: var(--white); }
+        .highlight-box {
+            border-left: 2px solid var(--green);
+            background: #0b0b0b;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: .80rem;
+            color: #aaa;
+            line-height: 1.7;
+        }
+        .highlight-box .hl-title {
+            font-size: .62rem;
+            color: var(--green);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .code-block {
+            background: #0a0a0a;
+            border: 1px solid #111;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: .75rem;
+            color: #555;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+        .code-block .cmd { color: var(--green); }
+        .code-block .out { color: #888; }
+        .code-block .warn { color: #ff4444; }
+        .attack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2px;
+            margin: 24px 0;
+        }
+        .attack-card {
+            background: #0b0b0b;
+            border: 1px solid #111;
+            padding: 18px;
+        }
+        .attack-card .ac-tag {
+            font-size: .58rem;
+            color: #ff4444;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .attack-card .ac-title {
+            font-size: .88rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .attack-card .ac-desc {
+            font-size: .74rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        .attack-card .ac-risk {
+            margin-top: 12px;
+            font-size: .62rem;
+            color: #ff4444;
+            letter-spacing: 1px;
+        }
+        .defense-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+        .defense-list li {
+            font-size: .80rem;
+            color: #888;
+            padding: 8px 0;
+            border-bottom: 1px solid #0f0f0f;
+            padding-left: 18px;
+            position: relative;
+        }
+        .defense-list li::before {
+            content: '>';
+            color: var(--green);
+            position: absolute;
+            left: 0;
+        }
+        .cta-block {
+            border: 1px solid #1a1a1a;
+            background: #0b0b0b;
+            padding: 28px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .cta-tag {
+            font-size: .62rem;
+            color: var(--green);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .cta-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .cta-desc {
+            font-size: .76rem;
+            color: #555;
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: var(--green);
+            color: #000;
+            font-family: 'Courier New', monospace;
+            font-size: .75rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 12px 28px;
+            text-decoration: none;
+            margin: 0 6px 8px;
+            transition: opacity .2s;
+        }
+        .cta-btn:hover { opacity: .85; }
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 36px 0;
+        }
+        .post-footer {
+            font-size: .68rem;
+            color: var(--dim);
+            padding: 24px 0 48px;
+            border-top: 1px solid var(--border);
+            line-height: 1.8;
+        }
+        .post-footer a {
+            color: var(--green);
+            text-decoration: none;
+        }
+        .scenario-box {
+            background: #090909;
+            border: 1px solid #111;
+            border-left: 2px solid #ff4444;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: .78rem;
+            color: #666;
+            line-height: 1.7;
+        }
+        .scenario-box .sc-title {
+            font-size: .62rem;
+            color: #ff4444;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">root@crypt3cho:~# cat blog_wifi_cafeterias.md</div>
+
+<div class="page-wrap">
+
+    <a href="https://crypt3cho.com" class="back-link">← CRYPT3CHO.COM</a>
+
+    <div class="post-tag">[ SEGURIDAD EN REDES PÚBLICAS ] // MAR 2026</div>
+    <h1>WiFi pública en cafeterías:<br>qué datos expones sin saberlo</h1>
+    <div class="post-meta">
+        Por <strong>CRYPT3CHO</strong> &nbsp;·&nbsp;
+        Monterrey, Nuevo León &nbsp;·&nbsp; 10 min de lectura
+    </div>
+
+    <div class="stat-row">
+        <div class="stat-box">
+            <span class="stat-num">82%</span>
+            <span class="stat-label">de usuarios en México usa WiFi pública sin VPN</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num">3 min</span>
+            <span class="stat-label">tarda un atacante en posicionarse en la red</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num">HTTP</span>
+            <span class="stat-label">tráfico no cifrado visible en texto plano</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-num">0</span>
+            <span class="stat-label">routers de cafetería con segmentación por cliente</span>
+        </div>
+    </div>
+
+    <h2>El escenario real</h2>
+    <p>
+        Son las 10 de la mañana. Llegas a tu cafetería de siempre en San Pedro.
+        Pides tu americano, abres la laptop y te conectas al WiFi del lugar. En menos de 60 segundos
+        tu dispositivo está en la misma red que otras 15 personas — entre ellas, potencialmente,
+        alguien con Kali Linux, una tarjeta de red en modo monitor y 20 minutos de tiempo libre.
+    </p>
+    <p>
+        No es una hipótesis. Es el vector de ataque más común en redes de uso publico y
+        el que menos atención recibe porque no deja rastro visible para la victima.
+    </p>
+
+    <div class="scenario-box">
+        <div class="sc-title">[ ESCENARIO REAL — AUDITORIA CONTROLADA ]</div>
+        En una prueba controlada realizada por CRYPT3CHO en un local con WiFi pública en el
+        área metropolitana de Monterrey, logramos capturar en menos de 8 minutos:
+        nombres de dispositivos, sistema operativo, aplicaciones activas, consultas DNS
+        y tráfico HTTP sin cifrar de 6 dispositivos distintos — sin interactuar con ninguno de ellos,
+        sin autenticación especial y sin romper ninguna protección. Solo escuchando la red.
+    </div>
+
+    <h2>Cómo funciona la red de una cafetería</h2>
+    <p>
+        La mayoría de los routers que los ISP instalan en negocios — Izzi, Telmex, Totalplay —
+        no tienen segmentación de red por cliente. Esto significa que todos los dispositivos
+        conectados al mismo WiFi pueden verse entre si. No hay separación entre tu laptop
+        y la del cliente de la mesa de al lado.
+    </p>
+    <p>
+        En una red corporativa bien configurada existe algo llamado <strong>client isolation</strong>:
+        cada dispositivo está aislado y no puede comúnicarse con otros en la misma red.
+        En el 95% de los negocios con WiFi pública en México, esto no existe.
+    </p>
+
+    <div class="code-block">
+<span class="cmd"># Escaneo pasivo de dispositivos en red pública típica</span>
+<span class="out">Iniciando captura en wlan0 (modo monitor)...</span>
+<span class="out"></span>
+<span class="out">Dispositivos detectados en 192.168.1.0/24:</span>
+<span class="out"></span>
+<span class="out">192.168.1.104  Apple iPhone 14        iOS 17.2    WiFi activo</span>
+<span class="out">192.168.1.107  Dell Latitude 5520     Windows 11  WiFi activo</span>
+<span class="out">192.168.1.112  Samsung Galaxy S23     Android 14  WiFi activo</span>
+<span class="out">192.168.1.118  Apple MacBook Pro      macOS 14    WiFi activo</span>
+<span class="out">192.168.1.121  Lenovo ThinkPad X1     Windows 11  WiFi activo</span>
+<span class="warn">[!] 5 dispositivos visibles sin autenticación adicional</span>
+<span class="warn">[!] Client isolation: NO ACTIVO</span>
+<span class="warn">[!] Trafico HTTP detectado en 3 dispositivos</span>
+    </div>
+
+    <h2>Los 4 ataques más comúnes en WiFi pública</h2>
+
+    <div class="attack-grid">
+        <div class="attack-card">
+            <div class="ac-tag">[ ATAQUE 01 ]</div>
+            <div class="ac-title">ARP Spoofing / MITM</div>
+            <div class="ac-desc">
+                El atacante se inserta entre tu dispositivo y el router.
+                Todo tu tráfico pasa por su equipo antes de llegar a internet.
+                Puede leer, modificar o bloquear cualquier comúnicación no cifrada.
+                No requiere romper ninguna contraseña.
+            </div>
+            <div class="ac-risk">RIESGO: CRITICO — Credenciales, sesiones, datos</div>
+        </div>
+        <div class="attack-card">
+            <div class="ac-tag">[ ATAQUE 02 ]</div>
+            <div class="ac-title">Evil Twin / Rogue AP</div>
+            <div class="ac-desc">
+                El atacante crea un punto de acceso con el mismo nombre que el WiFi
+                del local. Tu dispositivo se conecta automáticamente si la señal es
+                más fuerte. Todo tu tráfico queda bajo su control desde el inicio
+                de la conexión.
+            </div>
+            <div class="ac-risk">RIESGO: CRITICO — Suplantacion total de red</div>
+        </div>
+        <div class="attack-card">
+            <div class="ac-tag">[ ATAQUE 03 ]</div>
+            <div class="ac-title">DNS Poisoning</div>
+            <div class="ac-desc">
+                El atacante modifica las respuestas DNS para redirigirte a sitios
+                falsos cuando escribes una URL legítima. Abres tu banco, pero
+                en realidad estas en una copia idéntica controlada por el atacante.
+                HTTPS puede mitigarlo pero no siempre.
+            </div>
+            <div class="ac-risk">RIESGO: ALTO — Phishing, robo de credenciales</div>
+        </div>
+        <div class="attack-card">
+            <div class="ac-tag">[ ATAQUE 04 ]</div>
+            <div class="ac-title">Passive Sniffing</div>
+            <div class="ac-desc">
+                Sin interactuar con ningún dispositivo, el atacante captura
+                todo el tráfico broadcast de la red. Obtiene nombres de equipos,
+                sistemas operativos, aplicaciones activas, consultas DNS y
+                cualquier tráfico HTTP en texto plano.
+            </div>
+            <div class="ac-risk">RIESGO: MEDIO — Fingerprinting, reconocimiento</div>
+        </div>
+    </div>
+
+    <h2>Qué información se expone realmente</h2>
+    <p>
+        Muchos usuarios piensan que si no entran a sitios "importantes" en WiFi pública
+        no hay riesgo. Esto es incorrecto. Incluso sin hacer nada activo, tu dispositivo
+        emite información constantemente:
+    </p>
+
+    <div class="highlight-box">
+        <div class="hl-title">// LO QUE TU DISPOSITIVO TRANSMITE SIN QUE LO SEPAS</div>
+        — Nombre del dispositivo (ej: "MacBook de Juan", "iPhone de Ana")<br>
+        — Sistema operativo y version apróximada<br>
+        — Historial de redes WiFi a las que te has conectado antes (Probe Requests)<br>
+        — Aplicaciones que consultan internet en segundo plano<br>
+        — Consultas DNS: que sitios visitas aunque la conexión sea HTTPS<br>
+        — Trafico de aplicaciones que no usan HTTPS (cada vez menos pero existen)<br>
+        — Metadatos de conexión: con que servidores te comúnicas, con que frecuencia
+    </div>
+
+    <p>
+        Las consultas DNS son especialmente reveladoras. Aunque el contenido de tus
+        conversaciones en WhatsApp este cifrado, el hecho de que tu dispositivo consulte
+        los servidores de WhatsApp, tu banco, tu correo y tu sistema de nominas cada
+        pocos minutos ya dice mucho sobre quién eres y que haces.
+    </p>
+
+    <h2>El problema del lado del negocio</h2>
+    <p>
+        El dueño de la cafetería tampoco tiene visibilidad de lo que pasa en su red.
+        Con el router estándar de Izzi o Telmex no puede ver cuántos dispositivos
+        hay conectados, cuánto consumen, ni si alguien esta haciendo algo que
+        afecte al resto de los clientes o a su propio negocio.
+    </p>
+    <p>
+        Casos reales que hemos documentado en auditorías en el área de Monterrey:
+    </p>
+
+    <div class="scenario-box">
+        <div class="sc-title">[ CASO 01 — CAFETERIA, SAN PEDRO NL ]</div>
+        Un cliente usaba la red del negocio para minería de criptomonedas via browser.
+        El dueño notaba que el internet "estaba lento" pero no tenia forma de identificar
+        la causa. El cliente llevaba 3 semanas haciendo esto sin que nadie lo supiera.
+    </div>
+
+    <div class="scenario-box">
+        <div class="sc-title">[ CASO 02 — RESTAURANTE, MONTERREY CENTRO ]</div>
+        Se detectaron descargas P2P (torrent) que saturaban el ancho de banda del negocio.
+        Los demas clientes tenian conexión extremadamente lenta. El router del ISP
+        no ofrecía ninguna herramienta para identificar o detener esto.
+    </div>
+
+    <h2>Cómo protegerte como usuario</h2>
+
+    <ul class="defense-list">
+        <li><strong>Usa VPN siempre en redes públicas.</strong> Cifra todo tu tráfico desde tu dispositivo hasta el servidor VPN. El atacante solo ve tráfico cifrado sin contenido legible.</li>
+        <li><strong>Verifica HTTPS.</strong> Antes de ingresar credenciales confirma el candado verde y que la URL sea exacta. Desconfia de certificados no validos.</li>
+        <li><strong>Desactiva la conexión automática a redes conocidas.</strong> Evita que tu dispositivo se conecte a Evil Twins automáticamente.</li>
+        <li><strong>No accedas a banca, correo corporativo o sistemas críticos</strong> desde WiFi pública sin VPN.</li>
+        <li><strong>Activa el firewall local</strong> en tu sistema operativo. Bloquea conexiónes entrantes de la red local.</li>
+        <li><strong>Usa DNS cifrado</strong> (DNS over HTTPS o DNS over TLS) para ocultar tus consultas DNS al operador de la red.</li>
+    </ul>
+
+    <h2>Cómo proteger tu negocio como dueño de cafetería</h2>
+    <p>
+        Si tienes un local con WiFi pública, tu responsabilidad va más alla de dar
+        acceso a internet. Un incidente de seguridad en tu red — aunque no sea tu
+        dispositivo el afectado — puede dañar la reputacion de tu negocio y
+        exponer tus propios sistemas internos.
+    </p>
+    <ul class="defense-list">
+        <li><strong>Segmenta la red.</strong> La red de tus clientes debe ser completamente independiente de la red interna del negocio (TPV, cajas, sistemas administrativos).</li>
+        <li><strong>Activa client isolation.</strong> Evita que los dispositivos de tus clientes se vean entre si.</li>
+        <li><strong>Monitorea quién está conectado.</strong> Saber cuántos dispositivos hay, cuánto consumen y si hay tráfico anormal es lo mínimo.</li>
+        <li><strong>Implementa límites de uso.</strong> Un cliente no deberia poder consumir 5GB en tu red ni conectarse por 8 horas.</li>
+        <li><strong>Bloquea puertos de torrent y mining.</strong> Protege tu ancho de banda de usos indebidos.</li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="cta-block">
+        <div class="cta-tag">[ SOLUCION PARA NEGOCIOS ]</div>
+        <div class="cta-title">Control<span style="color:var(--green)">Qbit</span> — Panel WiFi inteligente</div>
+        <div class="cta-desc">
+            Ve en tiempo real quién está conectado a tu red, cuánto consumen
+            y sacalos con un toque desde tu celular. Limites automáticos de tiempo
+            y megas. Bloqueo de torrent y mining incluido. Sin cambiar tu router.
+            Desarrollado por CRYPT3CHO.
+        </div>
+        <a href="https://controlqbit.com" target="_blank" class="cta-btn">controlqbit.com →</a>
+        <a href="https://wa.me/528134322647" target="_blank" class="cta-btn secondary">Solicitar demo</a>
+    </div>
+
+    <h2>Conclusión</h2>
+    <p>
+        El WiFi pública no es inherentemente inseguro — el problema es la falta de
+        configuración adecuada del lado del negocio y la falta de precauciones del
+        lado del usuario. Con las herramientas correctas, el dueño del local puede
+        tener visibilidad y control total de su red, y el usuario puede proteger
+        su tráfico con medidas simples como una VPN.
+    </p>
+    <p>
+        La próxima vez que te conectes al WiFi de tu cafetería favorita, recuerda:
+        no eres el único en esa red.
+    </p>
+
+    <hr class="divider">
+
+    <div class="post-footer">
+        <strong style="color:var(--green)">CRYPT3CHO</strong> — Ciberseguridad ofensiva · México<br>
+        <a href="https://crypt3cho.com">crypt3cho.com</a> &nbsp;·&nbsp;
+        <a href="https://wa.me/528134322647">WhatsApp</a> &nbsp;·&nbsp;
+        <a href="https://t.me/crypt3cho">Telegram</a><br><br>
+        <span style="color:#333">
+        Este artículo es con fines educativos. Las técnicas descritas solo deben
+        aplicarse en redes propias o con autorización escrita del propietario.
+        CRYPT3CHO no se hace responsable del uso indebido de esta información.
+        </span>
+    </div>
+
+</div>
+</body>
+</html>
