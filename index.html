@@ -599,7 +599,7 @@
                     .rdt { fill:rgba(0,255,65,0.14); stroke:#00ff41; stroke-width:1.8; opacity:0.9; }
                     .rpt { fill:#00ff41; }
                     /* ── PRODUCTOS SAAS ── */
-.productos-intro{margin-bottom:2rem;line-height:1.8}
+.productos-intro{margin-bottom:2rem;line-height:1.8;font-family:var(--mono);font-size:.72rem;color:#5c6d82;letter-spacing:.03em}
 .productos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-bottom:2.5rem}
 .producto-card{background:rgba(0,201,167,0.04);border:1px solid rgba(0,201,167,0.2);border-radius:4px;padding:1.3rem;transition:border-color .2s}
 .producto-card:hover{border-color:rgba(0,201,167,0.5)}
@@ -607,9 +607,10 @@
 .prod-tag{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:#5c6d82}
 .prod-status{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em}
 .prod-status.online{color:#00c9a7}
-.prod-name{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:#eef2f7;margin-bottom:.15rem}
-.prod-url{font-family:var(--mono);font-size:.7rem;color:#00c9a7;margin-bottom:.7rem}
-.prod-desc{font-size:.82rem;color:#8898aa;line-height:1.6;margin-bottom:.8rem}
+.prod-logo{font-family:var(--mono);font-size:1.1rem;font-weight:700;letter-spacing:.08em;margin-bottom:.15rem}
+.prod-logo .hl{color:#00c9a7}
+.prod-url{font-family:var(--mono);font-size:.7rem;color:#00c9a7;margin-bottom:.7rem;opacity:.7}
+.prod-desc{font-family:var(--mono);font-size:.7rem;color:#5c6d82;line-height:1.65;margin-bottom:.8rem;letter-spacing:.02em}
 .prod-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.9rem}
 .ptag{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;color:#5c6d82;border:1px solid rgba(255,255,255,0.07);padding:.15rem .45rem;border-radius:2px}
 .prod-link{font-family:var(--mono);font-size:.72rem;color:#00c9a7;text-decoration:none;letter-spacing:.05em}
@@ -620,8 +621,8 @@
 .cli-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:.9rem 1.1rem}
 .cli-sector{font-family:var(--mono);font-size:.6rem;color:#5c6d82;margin-bottom:.3rem}
 .cli-nombre{font-family:var(--mono);font-size:.88rem;color:#eef2f7;font-weight:600;margin-bottom:.2rem}
-.cli-desc{font-size:.78rem;color:#5c6d82}
-.cli-nota{margin-top:.8rem;line-height:1.8}
+.cli-desc{font-family:var(--mono);font-size:.7rem;color:#5c6d82}
+.cli-nota{margin-top:.8rem;font-family:var(--mono);font-size:.7rem;color:#5c6d82;line-height:1.8;letter-spacing:.02em}
                 </style>
             </defs>
             <rect width="900" height="480" fill="#0a0a10" rx="1"/>
@@ -1261,9 +1262,9 @@
   <div class="sec-body">
 
     <div class="productos-intro">
-      <span class="comment">// Ademas del servicio de ciberseguridad ofensiva, CRYPT3CHO desarrolla</span><br>
-      <span class="comment">// y opera plataformas SaaS propias para sectores especificos.</span><br>
-      <span class="comment">// La misma infraestructura. El mismo nivel de seguridad. Ahora como producto.</span>
+      // Ademas del servicio de ciberseguridad ofensiva, CRYPT3CHO desarrolla<br>
+      // y opera plataformas SaaS propias para sectores especificos.<br>
+      // La misma infraestructura. El mismo nivel de seguridad. Ahora como producto.
     </div>
 
     <div class="productos-grid">
@@ -1273,7 +1274,7 @@
           <span class="prod-tag">[ SALUD ]</span>
           <span class="prod-status online">● LIVE</span>
         </div>
-        <div class="prod-name">EncrypMed</div>
+        <div class="prod-logo">Encryp<span class="hl">Med</span></div>
         <div class="prod-url">encrypmed.com</div>
         <div class="prod-desc">
           Nube medica colaborativa. Comparte estudios clinicos con colegas
@@ -1294,7 +1295,7 @@
           <span class="prod-tag">[ UNIVERSAL ]</span>
           <span class="prod-status online">● LIVE</span>
         </div>
-        <div class="prod-name">UpperTunnel</div>
+        <div class="prod-logo">Upper<span class="hl">Tunnel</span></div>
         <div class="prod-url">uppertunnel.com</div>
         <div class="prod-desc">
           Transferencia segura de archivos confidenciales. Para notarias,
@@ -1315,7 +1316,7 @@
           <span class="prod-tag">[ NEGOCIOS ]</span>
           <span class="prod-status online">● LIVE</span>
         </div>
-        <div class="prod-name">ControlQbit</div>
+        <div class="prod-logo">Control<span class="hl">Qbit</span></div>
         <div class="prod-url">controlqbit.com</div>
         <div class="prod-desc">
           Panel WiFi inteligente para cafeterias, restaurantes y negocios.
@@ -1343,8 +1344,8 @@
         </div>
       </div>
       <div class="cli-nota">
-        <span class="comment">// Por acuerdo de confidencialidad no se revelan nombres.</span><br>
-        <span class="comment">// Referencias disponibles bajo NDA para prospectos calificados.</span>
+        // Por acuerdo de confidencialidad no se revelan nombres.<br>
+        // Referencias disponibles bajo NDA para prospectos calificados.
       </div>
     </div>
 
